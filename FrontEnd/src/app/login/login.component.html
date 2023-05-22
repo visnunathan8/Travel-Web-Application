@@ -1,0 +1,32 @@
+<br><br>
+<div id="check" class="container">
+  <h1 class="title">TRAVEL BOOKING SYSTEM</h1>
+  <div class="form-container">
+    <form class="signup-form" (ngSubmit)="checkLogin()">
+      <div class="form-group">
+        <label for="username">User Name:</label>
+        <input type="text" id="username" name="username" [(ngModel)]="username" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" required>
+      </div>
+
+      <div class="form-group">
+        <label for="accountType">Account Type:</label>
+        <select id="accountType" name="accountType" [(ngModel)]="accountType" required>
+          <option value="">Select Account Type</option>
+          <option value="customer">Customer</option>
+          <option value="travelAgent">Travel Agent</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+
+      <div class="button-container">
+        <button type="submit" class="btn btn-success">Login</button>
+        <button class="btn btn-success" (click)="signup()">Sign Up</button>
+      </div>
+    </form>
+  </div>
+</div>
