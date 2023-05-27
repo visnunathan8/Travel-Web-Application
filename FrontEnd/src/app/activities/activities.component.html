@@ -1,0 +1,83 @@
+<app-adminheader></app-adminheader>
+
+<div class="search-container">
+  <div class="search-label">SEARCH BOX :</div>
+  <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box">
+</div>
+
+<table class="activity-table">
+  <thead>
+    <tr>
+      <th>Activity ID</th>
+      <th>Activity Name</th>
+      <th>Location</th>
+      <th>Duration</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let activity of activities; let i = index">
+      <td>
+        <input type="text" [(ngModel)]="activity.activitiesId" disabled>
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="activity.activityName" [disabled]="!activity.editable">
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="activity.location" [disabled]="!activity.editable">
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="activity.duration" [disabled]="!activity.editable">
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="activity.description" [disabled]="!activity.editable">
+      </td>
+      <td>
+        <input type="number" [(ngModel)]="activity.price" [disabled]="!activity.editable">
+      </td>
+      <td>
+        <button class="edit-btn" (click)="toggleEdit(i)">
+          {{ activity.editable ? 'Save' : 'Edit' }}
+        </button>
+        <button class="delete-btn" (click)="deleteActivity(i)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div *ngIf="showAddForm">
+  <table class="activity-table">
+    <tbody>
+      <tr>
+        <td>
+          <input type="text" [(ngModel)]="newActivity.activitiesId">
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="newActivity.activityName">
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="newActivity.location">
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="newActivity.duration">
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="newActivity.description">
+        </td>
+        <td>
+          <input type="number" [(ngModel)]="newActivity.price">
+        </td>
+        <td>
+          <button class="edit-btn" (click)="saveActivity(newActivity)">
+            Save
+          </button>
+          <button class="delete-btn" (click)="deleteNewActivity()">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<button class="add-btn" (click)="addNewActivity()">Add Activity</button>
