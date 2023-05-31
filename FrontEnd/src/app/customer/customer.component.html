@@ -1,0 +1,64 @@
+<app-adminheader></app-adminheader>
+<!-- app.component.html -->
+<table class="travel-table">
+  <thead>
+    <tr>
+      <th>Travel Package Name</th>
+      <th>FlightId</th>
+      <th>HotelId</th>
+      <th>ActivitiesId</th>
+      <th>Departure Date</th>
+      <th>Source</th>
+      <th>Destination</th>
+      <th>Number Of Days</th>
+      <th>Total Price</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let travel of travels; let i = index">
+      <td>
+        <input type="text" [(ngModel)]="travel.travelPackageName" [disabled]="!travel.editable">
+      </td>
+      <td>
+        <select [(ngModel)]="travel.flightId" [disabled]="!travel.editable">
+          <option value="" disabled>Select Flight</option>
+          <option *ngFor="let option of flightOptions" [value]="option">{{ option }}</option>
+        </select>
+      </td>
+      <td>
+        <select [(ngModel)]="travel.HotelId" [disabled]="!travel.editable">
+          <option value="" disabled>Select Hotel</option>
+          <option *ngFor="let option of hotelOptions" [value]="option">{{ option }}</option>
+        </select>
+      </td>
+      <td>
+        <select [(ngModel)]="travel.ActivitiesId" [disabled]="!travel.editable">
+          <option value="" disabled>Select Activities</option>
+          <option *ngFor="let option of activitiesOptions" [value]="option">{{ option }}</option>
+        </select>
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="travel.departureDate" [disabled]="!travel.editable">
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="travel.source" [disabled]="!travel.editable">
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="travel.destination" [disabled]="!travel.editable">
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="travel.noofdays" [disabled]="!travel.editable">
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="travel.totalprice" [disabled]="!travel.editable">
+      </td>
+      <td>
+        <button class="edit-btn" (click)="toggleEdit(i)">
+          {{ travel.editable ? 'Save' : 'Edit' }}
+        </button>
+        <button class="delete-btn" (click)="deleteTravel(i)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

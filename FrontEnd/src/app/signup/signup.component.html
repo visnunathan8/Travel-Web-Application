@@ -1,0 +1,57 @@
+
+<h1 class="title">Create an Account</h1>
+<form class="signup-form" (ngSubmit)="signup()">
+  <div class="form-group">
+    <label for="accountType">Account Type:</label>
+    <select id="accountType" name="accountType" [(ngModel)]="accountType" (change)="toggleFormFields()">
+      <option value="customer">Customer</option>
+      <option value="travelAgent">Travel Agent</option>
+    </select>
+  </div>
+
+  <div *ngIf="accountType === 'customer'">
+    <div class="form-group">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" name="firstName" [(ngModel)]="firstName" required>
+    </div>
+
+    <div class="form-group">
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" name="lastName" [(ngModel)]="lastName" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" [(ngModel)]="email" required>
+    </div>
+
+    <div class="form-group">
+      <label for="dob">Date of Birth:</label>
+      <input type="date" id="dob" name="dob" [(ngModel)]="dob" required>
+    </div>
+  </div>
+
+  <div *ngIf="accountType === 'travelAgent'">
+    <div class="form-group">
+      <label for="agentName">Travel Agent Name:</label>
+      <input type="text" id="agentName" name="agentName" [(ngModel)]="agentName">
+    </div>
+
+    <div class="form-group">
+      <label for="location">Location:</label>
+      <input type="text" id="location" name="location" [(ngModel)]="location">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" [(ngModel)]="username" required>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" [(ngModel)]="password" required>
+  </div>
+
+  <button type="submit">Sign Up</button>
+</form>
