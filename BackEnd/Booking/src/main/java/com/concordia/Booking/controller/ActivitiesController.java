@@ -5,6 +5,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,6 +19,7 @@ import com.concordia.TravelBookingSystem.service.ActivitiesService;
 
 @RestController
 @RequestMapping(path = "/activities")
+@CrossOrigin(origins="*")
 public class ActivitiesController {
 
     @Autowired
@@ -44,7 +46,12 @@ public class ActivitiesController {
     public ResponseEntity<?> findActivityById(@RequestParam int activitiesId) {
     	HttpHeaders headers = new HttpHeaders();
     	try {
-    	    return ResponseEntity.status(HttpStatus.OK).headers(headers).body(activitiesService.findActivitiesById(activitiesId));
+    	    Activities activity = activitiesService.findActivitiesById(activitiesId);
+    	    if (activity != null) {
+    	        return ResponseEntity.status(HttpStatus.OK).headers(headers).body(activity);
+    	    } else {
+    	        return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(headers).body("Activity not found");
+    	    }
     	} catch (Exception e) {
     	    headers.add("Message", "false");
     	    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).headers(headers).body("Failed to find activity");
@@ -70,7 +77,12 @@ public class ActivitiesController {
     public ResponseEntity<?> updateActivity(@RequestBody Activities activity) {
     	HttpHeaders headers = new HttpHeaders();
     	try {
-    	    return ResponseEntity.status(HttpStatus.OK).headers(headers).body(activitiesService.updateActivities(activity));
+    	    Activities updatedActivity = activitiesService.updateActivities(activity);
+    	    if (updatedActivity != null) {
+    	        return ResponseEntity.status(HttpStatus.OK).headers(headers).body(updatedActivity);
+    	    } else {
+    	        return ResponseEntity.status(HttpStatus.NOT_FOUND).headers(headers).body("Activity not found");
+    	    }
     	} catch (Exception e) {
     	    headers.add("Message", "false");
     	    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).headers(headers).body("Failed to update activity");
@@ -84,10 +96,10 @@ public class ActivitiesController {
         HttpHeaders headers = new HttpHeaders();
         try {
             activitiesService.deleteActivities(activitiesId);
-            return ResponseEntity.status(HttpStatus.OK).headers(headers).body("Activity deleted successfully");
+            return ResponseEntity.ok().headers(headers).body("{\"message\": \"Activity deleted successfully\"}");
         } catch (Exception e) {
             headers.add("Message", "false");
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).headers(headers).body("Failed to delete activity");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).headers(headers).body("{\"error\": \"Failed to delete activity\"}");
         }
     }
 }
