@@ -46,7 +46,6 @@ export class TravelagentService {
   getTravelAgentAccountList() {
     return this.http.get<travelagentaccount[]>('http://localhost:8081/travelagent/findallTravelAgentAccounts/');
   }
-
   // getTravelAgentAccount(username: string) {
   //   return this.http.get<travelagentaccount>('https://floating-everglades-27882.herokuapp.com/travelagent/findByUsername?username='+username);
   // }
@@ -64,5 +63,6 @@ export class TravelagentService {
   // getTravelAgentAccountList() {
   //   return this.http.get<travelagentaccount[]>('https://floating-everglades-27882.herokuapp.com/travelagent/findallTravelAgentAccounts/');
   // }
+
 }
 
