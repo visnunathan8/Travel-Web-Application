@@ -4,19 +4,24 @@ import { BehaviorSubject } from 'rxjs';
 
 export class customeraccount{
   constructor(
-    public username: string,
-    public password: string,
-    public type: string,
+
+    public username?: string,
+    public password?: string,
+    public type?: string,
     public firstName?: string,
     public lastName?: string,
     public email?: string,
-    public dob?: string
+    public dob?: string,
+    public customerId?: string
   ){}
 }
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class customerAccountService {
+
   private messageSource = new BehaviorSubject("default message");
   currentMessage = this.messageSource.asObservable();
 
@@ -28,14 +33,10 @@ export class customerAccountService {
 setLoggedIn(value:boolean){
   this.loggedInStatus = value
 }
-changeMessage(message: string) {
-  this.messageSource.next(message)
-}
 get isLoggedIn(){
   return this.loggedInStatus
 }
   getCustomerAccount(username: string) {
-    this.changeMessage(username);
     return this.http.get<customeraccount>('http://localhost:8081/customeraccount/findByUsername?username='+username);
   }
   checkCustomerAccount(customeraccount: customeraccount) {
@@ -52,4 +53,23 @@ get isLoggedIn(){
   getCustomerAccountList() {
     return this.http.get<customeraccount[]>('http://localhost:8081/customeraccount/findallCustomerAccounts/');
   }
+
+
+  // getCustomerAccount(username: string) {
+  //   return this.http.get<customeraccount>('https://floating-everglades-27882.herokuapp.com/customeraccount/findByUsername?username='+username);
+  // }
+  // checkCustomerAccount(customeraccount: customeraccount) {
+  //   return this.http.get<Number>('https://floating-everglades-27882.herokuapp.com/customeraccount/checkCustomer?username='+customeraccount.username+'&password='+customeraccount.password+'&accountType='+customeraccount.type);
+  // }
+  // createCustomerAccount(customeraccount: customeraccount) {
+  //      return this.http.post<customeraccount>('https://floating-everglades-27882.herokuapp.com/customeraccount/addCustomerAccount/', customeraccount);
+  //  }
+
+  // updateCustomerAccount(customeraccount: customeraccount) {
+  //   return this.http.post<string>('https://floating-everglades-27882.herokuapp.com/customeraccount/updateCustomer/${id}', customeraccount);
+  // }
+
+  // getCustomerAccountList() {
+  //   return this.http.get<customeraccount[]>('https://floating-everglades-27882.herokuapp.com/customeraccount/findallCustomerAccounts/');
+  // }
 }
