@@ -46,5 +46,23 @@ export class TravelagentService {
   getTravelAgentAccountList() {
     return this.http.get<travelagentaccount[]>('http://localhost:8081/travelagent/findallTravelAgentAccounts/');
   }
+
+  // getTravelAgentAccount(username: string) {
+  //   return this.http.get<travelagentaccount>('https://floating-everglades-27882.herokuapp.com/travelagent/findByUsername?username='+username);
+  // }
+  // checkTravelAgentAccount(travelagentaccount: travelagentaccount) {
+  //   return this.http.get<Number>('https://floating-everglades-27882.herokuapp.com/travelagent/checkTravelAgent?username='+travelagentaccount.username+'&password='+travelagentaccount.password+'&accountType='+travelagentaccount.type);
+  // }
+  // createTravelAgentAccount(travelagentaccount: travelagentaccount) {
+  //      return this.http.post<travelagentaccount>('https://floating-everglades-27882.herokuapp.com/travelagent/addTravelAgentAccount/', travelagentaccount);
+  //  }
+
+  // updateTravelAgentAccount(travelagentaccount: travelagentaccount) {
+  //   return this.http.post<string>('https://floating-everglades-27882.herokuapp.com/travelagent/updateTravelAgent/${id}', travelagentaccount);
+  // }
+
+  // getTravelAgentAccountList() {
+  //   return this.http.get<travelagentaccount[]>('https://floating-everglades-27882.herokuapp.com/travelagent/findallTravelAgentAccounts/');
+  // }
 }
 
