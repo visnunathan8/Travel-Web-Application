@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 
 export class customeraccount{
   constructor(
+<<<<<<< HEAD
     public username?: string,
     public password?: string,
     public type?: string,
@@ -30,6 +31,21 @@ export class customerAccountService {
     return this.customerState;
   }
 
+=======
+    public username: string,
+    public password: string,
+    public type: string,
+    public firstName?: string,
+    public lastName?: string,
+    public email?: string,
+    public dob?: string
+  ){}
+}
+@Injectable({
+  providedIn: 'root'
+})
+export class customerAccountService {
+>>>>>>> f01013c381a383a939441c9a3fce866d2960701b
   private messageSource = new BehaviorSubject("default message");
   currentMessage = this.messageSource.asObservable();
 
@@ -41,11 +57,22 @@ export class customerAccountService {
 setLoggedIn(value:boolean){
   this.loggedInStatus = value
 }
+<<<<<<< HEAD
+=======
+changeMessage(message: string) {
+  this.messageSource.next(message)
+}
+>>>>>>> f01013c381a383a939441c9a3fce866d2960701b
 get isLoggedIn(){
   return this.loggedInStatus
 }
   getCustomerAccount(username: string) {
+<<<<<<< HEAD
     return this.http.get<customeraccount>('http://localhost:8081/customeraccount/findbyUsername?username='+username);
+=======
+    this.changeMessage(username);
+    return this.http.get<customeraccount>('http://localhost:8081/customeraccount/findByUsername?username='+username);
+>>>>>>> f01013c381a383a939441c9a3fce866d2960701b
   }
   checkCustomerAccount(customeraccount: customeraccount) {
     return this.http.get<Number>('http://localhost:8081/customeraccount/checkCustomer?username='+customeraccount.username+'&password='+customeraccount.password+'&accountType='+customeraccount.type);
@@ -61,6 +88,7 @@ get isLoggedIn(){
   getCustomerAccountList() {
     return this.http.get<customeraccount[]>('http://localhost:8081/customeraccount/findallCustomerAccounts/');
   }
+<<<<<<< HEAD
 
 
   // getCustomerAccount(username: string) {
@@ -80,4 +108,6 @@ get isLoggedIn(){
   // getCustomerAccountList() {
   //   return this.http.get<customeraccount[]>('https://floating-everglades-27882.herokuapp.com/customeraccount/findallCustomerAccounts/');
   // }
+=======
+>>>>>>> f01013c381a383a939441c9a3fce866d2960701b
 }
