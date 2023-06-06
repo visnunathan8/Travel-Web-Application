@@ -4,7 +4,6 @@ import { BehaviorSubject } from 'rxjs';
 
 export class customeraccount{
   constructor(
-
     public username?: string,
     public password?: string,
     public type?: string,
@@ -21,6 +20,15 @@ export class customeraccount{
 })
 
 export class customerAccountService {
+  private customerState: customeraccount;
+
+  setCustomerState(customer: customeraccount) {
+    this.customerState = customer;
+  }
+
+  getCustomerState() {
+    return this.customerState;
+  }
 
   private messageSource = new BehaviorSubject("default message");
   currentMessage = this.messageSource.asObservable();
@@ -37,7 +45,7 @@ get isLoggedIn(){
   return this.loggedInStatus
 }
   getCustomerAccount(username: string) {
-    return this.http.get<customeraccount>('http://localhost:8081/customeraccount/findByUsername?username='+username);
+    return this.http.get<customeraccount>('http://localhost:8081/customeraccount/findbyUsername?username='+username);
   }
   checkCustomerAccount(customeraccount: customeraccount) {
     return this.http.get<Number>('http://localhost:8081/customeraccount/checkCustomer?username='+customeraccount.username+'&password='+customeraccount.password+'&accountType='+customeraccount.type);
