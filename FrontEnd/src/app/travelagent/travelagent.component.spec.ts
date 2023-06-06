@@ -12,6 +12,7 @@ describe('TravelagentComponent', () => {
     })
     .compileComponents();
   }));
+  
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TravelagentComponent);
