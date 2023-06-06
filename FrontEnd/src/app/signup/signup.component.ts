@@ -9,7 +9,6 @@ import { travelagentaccount, TravelagentService } from '../service/travelagent.s
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-
 export class SignupComponent {
   accountType: string;
   firstName: string;
@@ -63,5 +62,6 @@ export class SignupComponent {
 
     // Clear the form fields when switching between account types
   }
+  
 }
 
