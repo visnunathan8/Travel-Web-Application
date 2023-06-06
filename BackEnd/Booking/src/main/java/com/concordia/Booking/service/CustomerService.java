@@ -32,6 +32,7 @@ public class CustomerService {
     }
     
 	public long checkCustomer(String username,String password, String accountType) {
+		System.out.println("Starting");
 		Customer userAccountList = customerRepository.findByUsername(username);
         String pass = bCryptPasswordEncoder.encode(password);
         System.out.println("PASSWORD : "+pass+"===>"+userAccountList.getPassword());
@@ -53,6 +54,7 @@ public class CustomerService {
     
     public Customer findByUsername(String username) {
     	Customer userAccountList = customerRepository.findByUsername(username);
+    	System.out.println(userAccountList.getCustomerId()+" ----> "+userAccountList.getFirstName());
         if (userAccountList != null) {
            return userAccountList;
         }
