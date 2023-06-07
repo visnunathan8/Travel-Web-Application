@@ -5,3 +5,4 @@ export interface travelagentaccount{
   agentName: string,
   location: string
 }
+
