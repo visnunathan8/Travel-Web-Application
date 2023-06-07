@@ -38,18 +38,18 @@ public class TravelPackage {
 	@Column(name = "totalPrice")
 	private double totalPrice;
 
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "hotelId")
-    private Hotel hotel;
+    @Column(name = "hotelId")
+    private int hotelId;
 
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "flightId")
-    private Flight flight;
+    @Column(name = "flightId")
+    private int flightId;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "activitiesId")
-    private Activities activities;
+    @Column(name = "activitiesId")
+    private int activitiesId;
 
+    @Column(name = "departureDate")
+    private String departureDate;
+    
 	public int getTravelPackageId() {
 		return travelPackageId;
 	}
@@ -98,28 +98,38 @@ public class TravelPackage {
 		this.totalPrice = totalPrice;
 	}
 
-	public Hotel getHotel() {
-		return hotel;
+	public int getHotelId() {
+		return hotelId;
 	}
 
-	public void setHotel(Hotel hotel) {
-		this.hotel = hotel;
+	public void setHotelId(int hotelId) {
+		this.hotelId = hotelId;
 	}
 
-	public Flight getFlight() {
-		return flight;
+	public int getFlightId() {
+		return flightId;
 	}
 
-	public void setFlight(Flight flight) {
-		this.flight = flight;
+	public void setFlightId(int flightId) {
+		this.flightId = flightId;
 	}
 
-	public Activities getActivities() {
-		return activities;
+	public int getActivitiesId() {
+		return activitiesId;
 	}
 
-	public void setActivities(Activities activities) {
-		this.activities = activities;
+	public void setActivitiesId(int activitiesId) {
+		this.activitiesId = activitiesId;
 	}
+
+	public String getDepartureDate() {
+		return departureDate;
+	}
+
+	public void setDepartureDate(String departureDate) {
+		this.departureDate = departureDate;
+	}
+
+	
 
 }
