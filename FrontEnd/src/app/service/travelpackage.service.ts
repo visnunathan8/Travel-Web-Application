@@ -15,10 +15,11 @@ export class Travel {
     public travelPackageName ?: string,
     public sourceCity ?: string,
     public destinationCity ?: string,
-    public noOfDays ?: string,
-    public totalPrice ?: string,
+    public noOfDays ?: Number,
+    public totalPrice ?: number,
     public departureDate ?: string,
-    public isCustomerCreated ?: boolean
+    public isCustomerCreated ?: boolean,
+    public customerId ?: Number
   ) {}
 }
 @Injectable({
@@ -31,6 +32,9 @@ export class TravelpackageService {
     return this.http.get<Travel[]>('http://localhost:8081/travelpackage/findAllTravelPackages');
   }
 
+  getTravelListByCustomerID(customerId: Number) {
+    return this.http.get<Travel[]>('http://localhost:8081/travelpackage/findAllTravelPackagesBycustomerId', { params: { customerId: customerId.toString() } });
+  }
   createTravel(travel: Travel) {
     return this.http.post<Travel>('http://localhost:8081/travelpackage/addTravelPackage', travel);
   }
@@ -43,8 +47,12 @@ export class TravelpackageService {
     return this.http.post<string>('http://localhost:8081/travelpackage/deleteTravelPackage', id);
   }
 
-  // getTravelList() {
+  //  getTravelList() {
   //   return this.http.get<Travel[]>('https://floating-everglades-27882.herokuapp.com/travelpackage/findAllTravelPackages');
+  // }
+
+  // getTravelListByCustomerID(customerId: Number) {
+  //   return this.http.get<Travel[]>('https://floating-everglades-27882.herokuapp.com/travelpackage/findAllTravelPackagesBycustomerId', { params: { customerId: customerId.toString() } });
   // }
 
   // createTravel(travel: Travel) {

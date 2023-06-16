@@ -43,6 +43,7 @@ public class TravelPackage {
 
     @Column(name = "flightId")
     private int flightId;
+<<<<<<< HEAD:Backend/src/main/java/com/concordia/TravelBookingSystem/entity/TravelPackage.java
 
     @Column(name = "activitiesId")
     private int activitiesId;
@@ -52,6 +53,14 @@ public class TravelPackage {
     
     @Column(name = "customerId")
     private int customerId;
+=======
+
+    @Column(name = "activitiesId")
+    private int activitiesId;
+
+    @Column(name = "departureDate")
+    private String departureDate;
+>>>>>>> 0ebc7e6fd201b126ceca7822bffae9049c758ee8:BackEnd/Booking/src/main/java/com/concordia/Booking/entity/TravelPackage.java
     
 	public int getTravelPackageId() {
 		return travelPackageId;
@@ -125,6 +134,7 @@ public class TravelPackage {
 		this.activitiesId = activitiesId;
 	}
 
+<<<<<<< HEAD:Backend/src/main/java/com/concordia/TravelBookingSystem/entity/TravelPackage.java
 	public boolean getIsCustomerCreated() {
 		return isCustomerCreated;
 	}
@@ -140,5 +150,16 @@ public class TravelPackage {
 	public void setCustomerId(int customerId) {
 		this.customerId = customerId;
 	}	
+=======
+	public String getDepartureDate() {
+		return departureDate;
+	}
+
+	public void setDepartureDate(String departureDate) {
+		this.departureDate = departureDate;
+	}
+
+	
+>>>>>>> 0ebc7e6fd201b126ceca7822bffae9049c758ee8:BackEnd/Booking/src/main/java/com/concordia/Booking/entity/TravelPackage.java
 
 }

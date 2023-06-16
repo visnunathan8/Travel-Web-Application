@@ -3,12 +3,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
 export class travelagentaccount {
+  editable: boolean;
   constructor(
-    public username: string,
-    public password: string,
-    public type: string,
+    public username?: string,
+    public password?: string,
+    public type?: string,
     public agentName ?: string,
-    public location ?: string
+    public location ?: string,
+    public travelAgentId?: Number
   ){}
 }
 
@@ -40,12 +42,13 @@ export class TravelagentService {
    }
 
   updateTravelAgentAccount(travelagentaccount: travelagentaccount) {
-    return this.http.post<string>('http://localhost:8081/travelagent/updateTravelAgent/${id}', travelagentaccount);
+    return this.http.post<string>('http://localhost:8081/travelagent/updateTravelAgent/', travelagentaccount);
   }
 
   getTravelAgentAccountList() {
     return this.http.get<travelagentaccount[]>('http://localhost:8081/travelagent/findallTravelAgentAccounts/');
   }
+
   // getTravelAgentAccount(username: string) {
   //   return this.http.get<travelagentaccount>('https://floating-everglades-27882.herokuapp.com/travelagent/findByUsername?username='+username);
   // }
@@ -63,6 +66,5 @@ export class TravelagentService {
   // getTravelAgentAccountList() {
   //   return this.http.get<travelagentaccount[]>('https://floating-everglades-27882.herokuapp.com/travelagent/findallTravelAgentAccounts/');
   // }
-
 }
 

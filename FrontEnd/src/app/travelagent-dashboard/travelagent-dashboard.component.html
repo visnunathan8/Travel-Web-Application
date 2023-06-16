@@ -1,3 +1,123 @@
-<p>
-  travelagent-dashboard works!
-</p>
+<app-adminheader></app-adminheader>
+<div class="search-container">
+  <div class="search-label">SEARCH BOX :</div>
+  <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box">
+</div>
+
+
+<table class="travel-table">
+  <thead>
+    <tr>
+      <th>Travel Package Name</th>
+      <th>FlightId</th>
+      <th>HotelId</th>
+      <th>ActivitiesId</th>
+      <th>Source</th>
+      <th>Destination</th>
+      <th>Number Of Days</th>
+      <th>Total Price</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let travel of travels; let i = index">
+      <td>
+        <input type="text" [(ngModel)]="travel.travelPackageName" [disabled]="!travel.editable">
+      </td>
+      <td>
+        <select [(ngModel)]="travel.flightId" [disabled]="!travel.editable">
+          <option value="" disabled>Select Flight</option>
+          <option *ngFor="let option of flightOptions" [value]="option.flightId">{{ option.flightId }}</option>
+        </select>
+      </td>
+      <td>
+        <select [(ngModel)]="travel.hotelId" [disabled]="!travel.editable">
+          <option value="" disabled>Select Hotel</option>
+          <option *ngFor="let option of hotelOptions" [value]="option.hotelId">{{ option.hotelId }}</option>
+        </select>
+      </td>
+      <td>
+        <select [(ngModel)]="travel.activitiesId" [disabled]="!travel.editable">
+          <option value="" disabled>Select Activities</option>
+          <option *ngFor="let option of activitiesOptions" [value]="option.activitiesId">{{ option.activitiesId }}</option>
+        </select>
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="travel.sourceCity" [disabled]="!travel.editable">
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="travel.destinationCity" [disabled]="!travel.editable">
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="travel.noOfDays" [disabled]="!travel.editable">
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="travel.totalPrice" [disabled]="!travel.editable">
+      </td>
+      <td>
+        <button class="edit-btn" (click)="toggleEdit(i)">
+          {{ travel.editable ? 'Save' : 'Edit' }}
+        </button>
+        <button class="delete-btn" (click)="deleteTravel(i)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div *ngIf="showAddForm">
+  <table class="travel-table">
+    <tbody>
+      <tr>
+        <td>
+          <input type="text" [(ngModel)]="newTravel.travelPackageName">
+        </td>
+        <td>
+          <select [(ngModel)]="newTravel.flightId">
+            <option value="" disabled>Select Flight</option>
+            <option *ngFor="let option of flightOptions" [value]="option.flightId">
+              {{ option.flightId }}
+            </option>
+          </select>
+        </td>
+        <td>
+          <select [(ngModel)]="newTravel.hotelId">
+            <option value="" disabled>Select Hotel</option>
+            <option *ngFor="let option of hotelOptions" [value]="option.hotelId">
+              {{ option.hotelId }}
+            </option>
+          </select>
+        </td>
+        <td>
+          <select [(ngModel)]="newTravel.activitiesId">
+            <option value="" disabled>Select Activities</option>
+            <option *ngFor="let option of activitiesOptions" [value]="option.activitiesId">
+              {{ option.activitiesId }}
+            </option>
+          </select>
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="newTravel.sourceCity">
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="newTravel.destinationCity">
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="newTravel.noOfDays">
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="newTravel.totalPrice">
+        </td>
+        <td>
+          <button class="edit-btn" (click)="saveTravel(newTravel)">
+            Save
+          </button>
+
+          <button class="delete-btn" (click)="deleteNewTravel()">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<button class="add-btn" (click)="addNewTravel()">Add Travel Package</button>
+
