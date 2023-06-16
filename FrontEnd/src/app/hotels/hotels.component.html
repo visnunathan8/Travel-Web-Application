@@ -1,0 +1,69 @@
+<app-adminheader></app-adminheader>
+
+<div class="search-container">
+  <div class="search-label">SEARCH BOX :</div>
+  <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box">
+</div>
+
+<table class="hotel-table">
+  <thead>
+    <tr>
+      <th>Hotel Name</th>
+      <th>Location</th>
+      <th>Price per Night</th>
+      <th>Amenities</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let hotel of filteredHotels; let i = index">
+      <td>
+        <input type="text" [(ngModel)]="hotel.hotelName" [disabled]="!hotel.editable">
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="hotel.location" [disabled]="!hotel.editable">
+      </td>
+      <td>
+        <input type="number" [(ngModel)]="hotel.pricePerNight" [disabled]="!hotel.editable">
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="hotel.amenities" [disabled]="!hotel.editable">
+      </td>
+      <td>
+        <button class="edit-btn" (click)="toggleEdit(i)">
+          {{ hotel.editable ? 'Save' : 'Edit' }}
+        </button>
+        <button class="delete-btn" (click)="deleteHotel(i)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div *ngIf="showAddForm">
+  <table class="hotel-table">
+    <tbody>
+      <tr>
+        <td>
+          <input type="text" [(ngModel)]="newHotel.hotelName">
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="newHotel.location">
+        </td>
+        <td>
+          <input type="number" [(ngModel)]="newHotel.pricePerNight">
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="newHotel.amenities">
+        </td>
+        <td>
+          <button class="edit-btn" (click)="saveHotel(newHotel)">
+            Save
+          </button>
+          <button class="delete-btn" (click)="deleteNewHotel()">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<button class="add-btn" (click)="addNewHotel()">Add Hotel</button>

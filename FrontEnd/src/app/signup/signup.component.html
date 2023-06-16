@@ -1,5 +1,9 @@
-
-<h1 class="title">Create an Account</h1>
+<div style="background-image: url('assets/tim-toomey-S1R_H_ybMYg-unsplash.jpg');background-size: cover;
+background-position: center;
+height: 100vh;">
+<br><br>
+<div id="check" class="container">
+<h1 class="title" style="font-family:Candara">Voyage SignUp</h1>
 <form class="signup-form" (ngSubmit)="signup()">
   <div class="form-group">
     <label for="accountType">Account Type:</label>
@@ -9,6 +13,7 @@
     </select>
   </div>
 
+  
   <div *ngIf="accountType === 'customer'">
     <div class="form-group">
       <label for="firstName">First Name:</label>
@@ -55,3 +60,5 @@
 
   <button type="submit">Sign Up</button>
 </form>
+</div>
+</div>

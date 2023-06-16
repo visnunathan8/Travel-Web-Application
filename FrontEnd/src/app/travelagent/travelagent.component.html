@@ -12,7 +12,6 @@
       <th>FlightId</th>
       <th>HotelId</th>
       <th>ActivitiesId</th>
-      <th>Departure Date</th>
       <th>Source</th>
       <th>Destination</th>
       <th>Number Of Days</th>
@@ -21,30 +20,27 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let travel of filteredTravels; let i = index">
+    <tr *ngFor="let travel of travels; let i = index">
       <td>
         <input type="text" [(ngModel)]="travel.travelPackageName" [disabled]="!travel.editable">
       </td>
       <td>
-        <select [(ngModel)]="travel.flight.flightId" [disabled]="!travel.editable">
+        <select [(ngModel)]="travel.flightId" [disabled]="!travel.editable">
           <option value="" disabled>Select Flight</option>
-          <option *ngFor="let option of flightOptions" [value]="option">{{ option }}</option>
+          <option *ngFor="let option of flightOptions" [value]="option.flightId">{{ option.flightId }}</option>
         </select>
       </td>
       <td>
-        <select [(ngModel)]="travel.hotel.hotelId" [disabled]="!travel.editable">
+        <select [(ngModel)]="travel.hotelId" [disabled]="!travel.editable">
           <option value="" disabled>Select Hotel</option>
-          <option *ngFor="let option of hotelOptions" [value]="option">{{ option }}</option>
+          <option *ngFor="let option of hotelOptions" [value]="option.hotelId">{{ option.hotelId }}</option>
         </select>
       </td>
       <td>
-        <select [(ngModel)]="travel.activities.activitiesId" [disabled]="!travel.editable">
+        <select [(ngModel)]="travel.activitiesId" [disabled]="!travel.editable">
           <option value="" disabled>Select Activities</option>
-          <option *ngFor="let option of activitiesOptions" [value]="option">{{ option }}</option>
+          <option *ngFor="let option of activitiesOptions" [value]="option.activitiesId">{{ option.activitiesId }}</option>
         </select>
-      </td>
-      <td>
-        <input type="text" [(ngModel)]="travel.departureDate" [disabled]="!travel.editable">
       </td>
       <td>
         <input type="text" [(ngModel)]="travel.sourceCity" [disabled]="!travel.editable">
@@ -76,25 +72,28 @@
           <input type="text" [(ngModel)]="newTravel.travelPackageName">
         </td>
         <td>
-          <select [(ngModel)]="newTravel.flight.flightId">
+          <select [(ngModel)]="newTravel.flightId">
             <option value="" disabled>Select Flight</option>
-            <option *ngFor="let option of flightOptions" [value]="option">{{ option }}</option>
+            <option *ngFor="let option of flightOptions" [value]="option.flightId">
+              {{ option.flightId }}
+            </option>
           </select>
         </td>
         <td>
-          <select [(ngModel)]="newTravel.hotel.hotelId">
+          <select [(ngModel)]="newTravel.hotelId">
             <option value="" disabled>Select Hotel</option>
-            <option *ngFor="let option of hotelOptions" [value]="option">{{ option }}</option>
+            <option *ngFor="let option of hotelOptions" [value]="option.hotelId">
+              {{ option.hotelId }}
+            </option>
           </select>
         </td>
         <td>
-          <select [(ngModel)]="newTravel.activities.activitiesId">
+          <select [(ngModel)]="newTravel.activitiesId">
             <option value="" disabled>Select Activities</option>
-            <option *ngFor="let option of activitiesOptions" [value]="option">{{ option }}</option>
+            <option *ngFor="let option of activitiesOptions" [value]="option.activitiesId">
+              {{ option.activitiesId }}
+            </option>
           </select>
-        </td>
-        <td>
-          <input type="text" [(ngModel)]="newTravel.departureDate">
         </td>
         <td>
           <input type="text" [(ngModel)]="newTravel.sourceCity">
