@@ -43,7 +43,10 @@ export class LoginComponent implements OnInit {
         this.type = data
         if(this.type == 1) {
           this.customerService.setLoggedIn(true);
-          this.router.navigate(['customer'])
+          sessionStorage.setItem('customer', JSON.stringify(this.customer));
+          // this.customerService.setCustomerState(this.customer);
+          // this.router.navigate(['customer'], { state: { customer: this.customer } });
+          this.router.navigate(['customer']);
         }else{
             alert("ENTER THE CORRECT USERNAME AND PASSWORD :(");
        }
@@ -55,7 +58,7 @@ export class LoginComponent implements OnInit {
         this.type = data
         if(this.type == 1) {
           this.travelAgentService.setLoggedIn(true);
-          this.router.navigate(['travelagent'])
+          this.router.navigate(['travelagentdashboard'])
         }else{
             alert("ENTER THE CORRECT USERNAME AND PASSWORD :(");
        }

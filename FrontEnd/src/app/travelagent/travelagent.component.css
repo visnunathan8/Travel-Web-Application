@@ -1,0 +1,95 @@
+
+/* app.component.css */
+.travel-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+.travel-table th,
+.travel-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+.travel-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.add-btn {
+  background-color: #081ddd;
+  color: white;
+  margin-right: 5px;
+}
+
+.add-btn,
+.edit-btn,
+.delete-btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #4CAF50;
+  color: white;
+  margin-right: 5px;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  opacity: 0.8;
+}
+
+/* Add more styling and effects as per your preference */
+
+.search-container {
+  margin: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.search-label {
+  font-size: 18px;
+  color: rgb(216, 0, 0);
+}
+
+.search-box {
+  border: none;
+  border-radius: 20px;
+  padding: 10px 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 16px;
+}
+
+.search-button {
+  background-color: #007bff;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+.search-button i {
+  font-size: 18px;
+}
+
+.search-box::placeholder {
+  color: rgb(0, 0, 0);
+}
+

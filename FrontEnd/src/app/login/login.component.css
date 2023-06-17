@@ -3,9 +3,8 @@
 }
 
 .title {
-  text-shadow: 2px 2px 5px rgb(232, 203, 86);
   font-size: 60px;
-  color: rgb(255, 0, 0);
+  color: rgb(255, 253, 253);
   font-weight: bold;
   margin-top: 100px;
   margin-bottom: 50px;
@@ -20,7 +19,7 @@
 .signup-form {
   width: 400px;
   padding: 20px;
-  background-color: #f1f1f1;
+  background-color: #ffffff;
   border-radius: 5px;
 }
 
@@ -57,7 +56,7 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #000000;
 }
 
 .button-container {
@@ -72,17 +71,17 @@ button:hover {
 }
 
 .btn-success {
-  background-color: #4CAF50;
+  background-color: #959494;
   color: white;
 }
 
 .btn-success:hover {
-  background-color: #45a049;
+  background-color: #3f3d3d;
   transform: scale(1.05);
 }
 
 .btn-success:active {
-  background-color: #3c873a;
+  background-color: #000000;
 }
 
 .btn-success:disabled {
