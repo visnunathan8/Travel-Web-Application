@@ -76,7 +76,19 @@ export class HotelComponent implements OnInit {
       }
     );
   }
-  
+
+  applyFilter() {
+    if (this.searchKeyword.trim()) {
+      this.filteredHotels = this.filteredHotels.filter(hotel =>
+        hotel.hotelName.toLowerCase().includes(this.searchKeyword.toLowerCase()) ||
+        hotel.location.toLowerCase().includes(this.searchKeyword.toLowerCase())
+      );
+    } else {
+      // Reset the filteredHotels array to show all hotels
+      this.getHotelList();
+    }
+  }
+
 
   updateHotel(index: number) {
     const hotel = this.filteredHotels[index];

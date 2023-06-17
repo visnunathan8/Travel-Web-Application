@@ -1,0 +1,70 @@
+<app-adminheader></app-adminheader>
+
+<div class="search-container">
+  <div class="search-label">SEARCH BOX :</div>
+  <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box" (input)="applyFilter()">
+</div>
+
+<table class="flight-table">
+  <thead>
+    <tr>
+      <th>Airline</th>
+      <th>Flight Number</th>
+      <th>Ticket Price</th>
+      <th>No. of Seats</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let flight of filteredFlights; let i = index"> <!-- Use filteredFlights instead of flights -->
+
+      <td>
+        <input type="text" [(ngModel)]="flight.airline" [disabled]="!flight.editable">
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="flight.flightNumber" [disabled]="!flight.editable">
+      </td>
+      <td>
+        <input type="number" [(ngModel)]="flight.ticketPrice" [disabled]="!flight.editable">
+      </td>
+      <td>
+        <input type="number" [(ngModel)]="flight.noOfSeats" [disabled]="!flight.editable">
+      </td>
+      <td>
+        <button class="edit-btn" (click)="toggleEdit(i)">
+          {{ flight.editable ? 'Save' : 'Edit' }}
+        </button>
+        <button class="delete-btn" (click)="deleteFlight(i)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div *ngIf="showAddForm">
+  <table class="flight-table">
+    <tbody>
+      <tr>
+        <td>
+          <input type="text" [(ngModel)]="newFlight.airline">
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="newFlight.flightNumber">
+        </td>
+        <td>
+          <input type="number" [(ngModel)]="newFlight.ticketPrice">
+        </td>
+        <td>
+          <input type="number" [(ngModel)]="newFlight.noOfSeats">
+        </td>
+        <td>
+          <button class="edit-btn" (click)="saveFlight(newFlight)">
+            Save
+          </button>
+          <button class="delete-btn" (click)="deleteNewFlight()">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<button class="add-btn" (click)="addNewFlight()">Add Flight</button>
