@@ -11,6 +11,8 @@ export class TravelAgentAdminViewComponent implements OnInit {
   searchKeyword: string = '';
   newAgent: travelagentaccount = new travelagentaccount();
   filteredAgents: travelagentaccount[] = [];
+  showAddPopup: boolean = false;
+  agents: travelagentaccount[] = [];
   constructor(private agentService: TravelagentService, private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit() {
@@ -19,11 +21,17 @@ export class TravelAgentAdminViewComponent implements OnInit {
 
   addNewAgent() {
     this.showAddForm = true;
+    this.showAddPopup = true;
   }
 
   deleteNewFlight() {
     this.newAgent = new travelagentaccount();
     this.showAddForm = false;
+    this.showAddPopup = false;
+  }
+ 
+  cancel() {
+    this.showAddPopup = false;
   }
 
   saveAgent(agent: travelagentaccount) {
@@ -34,6 +42,8 @@ export class TravelAgentAdminViewComponent implements OnInit {
           this.resetForm();
           this.showAddForm = false;
           this.filteredAgents.push(response);
+          this.showAddPopup = false;
+
         },
         (error) => {
           console.log('Error occurred while saving Agent:', error);
@@ -48,9 +58,9 @@ export class TravelAgentAdminViewComponent implements OnInit {
   getAgentList() {
     this.agentService.getTravelAgentAccountList().subscribe(
       (agent: travelagentaccount[]) => {
-        this.filteredAgents = agent.map((agent) => ({ ...agent, editable: false }));
-        // this.applyFilter(); // Apply the filter when the flight list is retrieved
-        this.changeDetectorRef.detectChanges(); // Trigger change detection
+        this.agents = agent;
+        this.applyFilter(); 
+        this.changeDetectorRef.detectChanges();
       },
       (error) => {
         console.log('Error occurred while retrieving flight list:', error);
@@ -102,9 +112,9 @@ export class TravelAgentAdminViewComponent implements OnInit {
   }
 
   applyFilter() {
-    this.filteredAgents = this.filteredAgents.filter(agent =>
-      agent.agentName.toLowerCase().includes(this.searchKeyword.toLowerCase()) ||
-      agent.username.toLowerCase().includes(this.searchKeyword.toLowerCase())
+    this.filteredAgents = this.agents.filter(agent =>
+      agent?.agentName?.toLowerCase().includes(this.searchKeyword.toLowerCase()) ||
+      agent?.username?.toLowerCase().includes(this.searchKeyword.toLowerCase())
     );
   }
 
