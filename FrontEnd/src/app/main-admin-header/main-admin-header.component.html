@@ -38,20 +38,18 @@ body {
 <div class="topnav">
 
   <a class="active" (click)=home()>home</a>
-  <a (click)=travelagent()>Travel Package</a>
-  <a (click)=listall()>List All Customer Bookings</a>
-  <a (click)=flights()>Flights</a>
-  <a (click)=hotels()>Hotels</a>
-  <a (click)=activities()>Activities List</a>
+  <a (click)=travelAgentAdminView()>Travel Agent</a>
+  <a (click)=reports()>Reports</a>
 
   <a style="float: right;" (click)=logout() >Logout</a>
-  <a style="float: right;position: relative; display: inline-block;" (click)=showNotification()>Notifications</a>
+  <a style="float: right;" (click)=not()>Notifications</a>
+
 
 </div>
 
 <div style="padding-left:16px">
 
 </div>
-<app-notification *ngIf="showNotificationFlag" (closeNotificationEvent)="closeNotification()"></app-notification>
+
 </body>
 </html>
