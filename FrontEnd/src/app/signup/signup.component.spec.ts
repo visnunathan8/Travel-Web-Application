@@ -12,7 +12,6 @@ describe('SignupComponent', () => {
     })
     .compileComponents();
   }));
-  
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SignupComponent);

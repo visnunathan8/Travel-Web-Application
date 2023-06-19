@@ -13,18 +13,36 @@ import { TravelagentDashboardComponent } from './travelagent-dashboard/travelage
 import { CustomerDashboardComponent } from './customer-dashboard/customer-dashboard.component';
 import { BookingPackageComponent } from './booking-package/booking-package.component';
 import { CustomPackageComponent } from './custom-package/custom-package.component';
+import { ListAllBookingPackageComponent } from './list-all-booking-package/list-all-booking-package.component';
+import { MainAdminHeaderComponent } from './main-admin-header/main-admin-header.component';
+import { TravelAgentAdminViewComponent } from './travel-agent-admin-view/travel-agent-admin-view.component';
+import { ReportsComponent } from './reports/reports.component';
+import { BookingReportComponent } from './booking-report/booking-report.component';
+
 
 export const routes: Routes = [
     { path: '', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'customer', component: CustomerDashboardComponent},
     { path: 'travelagent', component: TravelagentComponent},
+    { path: 'listall', component:ListAllBookingPackageComponent},
+    {
+      path: 'travelAgentAdminView',
+      component: TravelAgentAdminViewComponent
+    },
+    {
+      path: 'bookingreport',
+      component: BookingReportComponent
+    },
     {
       path: 'login',
       component: LoginComponent,
-      canActivate:[AuthGuard]
-   },
+    },
     {
+     path: 'reports',
+     component: ReportsComponent,
+    },
+   {
       path: 'admin',
       component: AdminComponent
     },

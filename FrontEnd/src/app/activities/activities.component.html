@@ -1,14 +1,17 @@
 <app-adminheader></app-adminheader>
 
-<div class="search-container">
-  <div class="search-label">SEARCH BOX :</div>
-  <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box">
+<div class="container ">
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box" (input)="applyFilters()">
+  </div>
+  
+  <button class="add-btn" (click)="addNewActivity()">Add Activity</button>
 </div>
+<div style="max-height: 500px; overflow-y: scroll;">
 
 <table class="activity-table">
   <thead>
-    <tr>
-      <th>Activity ID</th>
+    <tr style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
       <th>Activity Name</th>
       <th>Location</th>
       <th>Duration</th>
@@ -18,10 +21,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let activity of activities; let i = index">
-      <td>
-        <input type="text" [(ngModel)]="activity.activitiesId" disabled>
-      </td>
+    <tr *ngFor="let activity of filteredActivities; let i = index" [class.selected]="activity.editable">
       <td>
         <input type="text" [(ngModel)]="activity.activityName" [disabled]="!activity.editable">
       </td>
@@ -38,46 +38,49 @@
         <input type="number" [(ngModel)]="activity.price" [disabled]="!activity.editable">
       </td>
       <td>
-        <button class="edit-btn" (click)="toggleEdit(i)">
-          {{ activity.editable ? 'Save' : 'Edit' }}
-        </button>
-        <button class="delete-btn" (click)="deleteActivity(i)">Delete</button>
+        <div style="margin-bottom: 10px;">
+          <button class="edit-btn" (click)="toggleEdit(i)">
+            {{ activity.editable ? 'Save' : 'Edit' }}
+          </button>
+        </div>
+        <div>
+          <button class="delete-btn" (click)="deleteActivity(i)">Delete</button>
+        </div>
       </td>
     </tr>
   </tbody>
 </table>
+</div>
 <br>
-<div *ngIf="showAddForm">
-  <table class="activity-table">
-    <tbody>
-      <tr>
-        <td>
-          <input type="text" [(ngModel)]="newActivity.activitiesId">
-        </td>
-        <td>
-          <input type="text" [(ngModel)]="newActivity.activityName">
-        </td>
-        <td>
-          <input type="text" [(ngModel)]="newActivity.location">
-        </td>
-        <td>
-          <input type="text" [(ngModel)]="newActivity.duration">
-        </td>
-        <td>
-          <input type="text" [(ngModel)]="newActivity.description">
-        </td>
-        <td>
-          <input type="number" [(ngModel)]="newActivity.price">
-        </td>
-        <td>
-          <button class="edit-btn" (click)="saveActivity(newActivity)">
-            Save
-          </button>
-          <button class="delete-btn" (click)="deleteNewActivity()">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+
+
+<div *ngIf="showAddPopup" class="popup-overlay show">
+  <div class="popup-content show">
+    <h2>Add Hotel</h2>
+    <div>
+      <label>Activity Name:</label>
+      <input type="text" [(ngModel)]="newActivity.activityName">
+    </div>
+    <div>
+      <label>Location:</label>
+      <input type="text" [(ngModel)]="newActivity.location">
+    </div>
+    <div>
+      <label>Duration:</label>
+      <input type="text" [(ngModel)]="newActivity.duration">
+    </div>
+    <div>
+      <label>Description:</label>
+      <input type="text" [(ngModel)]="newActivity.description">
+    </div>
+    <div>
+      <label>Price:</label>
+      <input type="number" [(ngModel)]="newActivity.price">
+    </div>
+    <div class="popup-buttons">
+      <button class="cancel-btn" (click)="cancel()">Cancel</button>
+      <button class="save-btn" (click)="saveActivity(newActivity)">Save</button>
+    </div>
+  </div>
 </div>
 
-<button class="add-btn" (click)="addNewActivity()">Add Activity</button>
