@@ -10,19 +10,6 @@
   margin-bottom: 50px;
 }
 
-.form-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.signup-form {
-  width: 400px;
-  padding: 20px;
-  background-color: #ffffff;
-  border-radius: 5px;
-}
-
 .form-group {
   margin-bottom: 20px;
 }
@@ -71,12 +58,12 @@ button:hover {
 }
 
 .btn-success {
-  background-color: #959494;
+  background-color: #7820FC;
   color: white;
 }
 
 .btn-success:hover {
-  background-color: #3f3d3d;
+  background-color: #4502AA;
   transform: scale(1.05);
 }
 

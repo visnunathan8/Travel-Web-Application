@@ -1,10 +1,3 @@
-.signup-form {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f1f1f1;
-  border-radius: 5px;
-}
 
 .form-group {
   margin-bottom: 20px;
@@ -29,7 +22,7 @@ select {
 }
 
 button {
-  background-color: #4CAF50;
+  background-color: #959494;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -40,7 +33,7 @@ button {
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #4502AA;
 }
 
 /* Additional styling for form groups based on account type */
@@ -71,7 +64,7 @@ input[type="password"]:focus,
 input[type="date"]:focus,
 select:focus {
   outline: none;
-  border-color: #4CAF50;
+  border-color: #3f3d3d;
 }
 
 /* Styling for the submit button */
@@ -79,25 +72,25 @@ button {
   width: 100%;
 }
 
-button:hover {
-  background-color: #45a049;
+.btn-success:hover {
+  background-color: #3f3d3d;
   transform: scale(1.05);
 }
 
-button:active {
-  background-color: #3c873a;
+.btn-success:active {
+  background-color: #000000;
 }
 
-button:disabled {
+.btn-success:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
 
 
+
 .title {
-  text-shadow: 2px 2px 5px rgb(232, 203, 86);
   font-size: 60px;
-  color: rgb(255, 0, 0);
+  color: rgb(255, 253, 253);
   font-weight: bold;
   margin-top: 100px;
   margin-bottom: 50px;
