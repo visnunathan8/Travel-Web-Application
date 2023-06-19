@@ -1,0 +1,69 @@
+<app-main-admin-header></app-main-admin-header>
+<div class="search-container">
+  <div class="search-label">SEARCH BOX :</div>
+  <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box" (input)="applyFilter()">
+</div>
+
+<table class="agent-table">
+  <thead>
+    <tr>
+      <th>Agent Name</th>
+      <th>Location</th>
+      <th>Username</th>
+      <th>Password</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let agent of filteredAgents; let i = index">
+
+      <td>
+        <input type="text" [(ngModel)]="agent.agentName" [disabled]="!agent.editable">
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="agent.location" [disabled]="!agent.editable">
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="agent.username" [disabled]="!agent.editable">
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="agent.password" [disabled]="!agent.editable">
+      </td>
+      <td>
+        <button class="edit-btn" (click)="toggleEdit(i)">
+          {{ agent.editable ? 'Save' : 'Edit' }}
+        </button>
+        <button class="delete-btn" (click)="deleteAgent(i)" disabled="true">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<div *ngIf="showAddForm">
+  <table class="agent-table">
+    <tbody>
+      <tr>
+        <td>
+          <input type="text" [(ngModel)]="newAgent.agentName">
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="newAgent.location">
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="newAgent.username">
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="newAgent.password">
+        </td>
+        <td>
+          <button class="edit-btn" (click)="saveAgent(newAgent)">
+            Save
+          </button>
+          <button class="delete-btn" (click)="deleteNewAgent()">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<button class="add-btn" (click)="addNewAgent()">Add Agent</button>

@@ -9,7 +9,15 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AdminheaderComponent implements OnInit {
 
   constructor(private router: Router,private route:ActivatedRoute) { }
+  showNotificationFlag = false;
 
+  showNotification() {
+    this.showNotificationFlag = true;
+  }
+
+  closeNotification() {
+    this.showNotificationFlag = false;
+  }
   ngOnInit() {
   }
   logout(){
@@ -17,7 +25,7 @@ export class AdminheaderComponent implements OnInit {
     this.router.navigate(['login'])
   }
   home(){
-    this.router.navigate(['travelagent'])
+    this.router.navigate(['travelagentdashboard'])
   }
   activities(){
     console.log("ASDF")
@@ -30,4 +38,11 @@ export class AdminheaderComponent implements OnInit {
     this.router.navigate(['hotels'])
 
   }
+  travelagent(){
+    this.router.navigate(['travelagent'])
+  }
+  listall() {
+    this.router.navigate(['listall'])
+  }
+
 }
