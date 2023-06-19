@@ -10,17 +10,25 @@ export class ActivitiesComponent implements OnInit {
   activities: Activity[] = [];
   showAddForm: boolean = false;
   searchKeyword: string = '';
+  filteredActivities: Activity[] = [];
+  showAddPopup: boolean = false;
+
   newActivity: Activity = new Activity();
   constructor(private activityService: ActivitiesService) { }
 
   ngOnInit() {
     this.getActivityList();
+    this.applyFilters(); // Apply initial filters
   }
 
   addNewActivity() {
     this.showAddForm = true;
+    this.showAddPopup = true;
   }
 
+  cancel() {
+    this.showAddPopup = false;
+  }
   deleteNewActivity() {
     this.newActivity = new Activity();
     this.showAddForm = false;
@@ -35,6 +43,7 @@ export class ActivitiesComponent implements OnInit {
           this.resetForm();
           this.showAddForm = false;
           this.getActivityList(); // Refresh the activity list
+          this.cancel();
         },
         (error) => {
           console.log('Error occurred while saving activity:', error);
@@ -50,12 +59,25 @@ export class ActivitiesComponent implements OnInit {
       (activities: Activity[]) => {
         console.log(activities);
         this.activities = activities;
+        this.filteredActivities = activities; // Initialize filteredActivities
       },
       (error) => {
         console.log('Error occurred while retrieving activity list:', error);
       }
     );
   }
+
+
+  applyFilters() {
+    if (this.searchKeyword.trim() === '') {
+      this.filteredActivities = this.activities; // If search keyword is empty, display all activities
+    } else {
+      this.filteredActivities = this.activities.filter(activity =>
+        activity?.activityName?.toLowerCase().includes(this.searchKeyword.toLowerCase())
+      );
+    }
+  }
+
 
   toggleEdit(index: number) {
     const activity = this.activities[index];
@@ -95,9 +117,9 @@ export class ActivitiesComponent implements OnInit {
     this.newActivity = new Activity();
   }
 
-  get filteredActivities() {
-    return this.activities && this.searchKeyword && this.activities.filter(activity =>
-      activity.activityName.toLowerCase().includes(this.searchKeyword.toLowerCase())
-    );
-  }
+  // get filteredActivities() {
+  //   return this.activities && this.searchKeyword && this.activities.filter(activity =>
+  //     activity.activityName.toLowerCase().includes(this.searchKeyword.toLowerCase())
+  //   );
+  // }
 }
