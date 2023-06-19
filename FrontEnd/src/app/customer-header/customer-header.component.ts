@@ -25,4 +25,5 @@ export class CustomerHeaderComponent implements OnInit {
   custom(){
     this.router.navigate(['customPackage'])
   }
+  not(){}
 }

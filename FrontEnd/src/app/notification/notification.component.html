@@ -1,0 +1,24 @@
+<div class="notification-overlay" (click)="closeNotification()"></div>
+<div class="notification-container">
+  <div class="notification-header">
+    <img class="logo-image" src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHRyYXZlbHxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60" alt="Logo" />
+    <h2>Booking Details</h2>
+    <button class="close-button" (click)="closeNotification()">&times;</button>
+  </div>
+  <div class="notification-box">
+    <div class="booking-list-container">
+      <ul class="booking-list">
+        <li *ngFor="let booking of bookings" class="booking-item">
+          <div class="booking-info">
+            <span class="booking-label">Customer ID:</span>
+            <span class="booking-value">{{ booking.customerId }}</span>
+          </div>
+          <div class="booking-info">
+            <span class="booking-label">Booking Summary:</span>
+            <span class="booking-value">Booked for travel package {{booking.travelPackageId}}  at a price of {{ booking.totalPrice }}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

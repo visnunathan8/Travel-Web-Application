@@ -10,12 +10,12 @@ body {
 
 .topnav {
   overflow: hidden;
-  background-color: #333;
+  background-color: #6E3E68;
 }
 
 .topnav a {
   float: left;
-  color: #f2f2f2;
+  color: #ffffff;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -23,23 +23,23 @@ body {
 }
 
 .topnav a:hover {
-  background-color: #ddd;
+  background-color: #C8B1C5;
   color: black;
 }
 
 .topnav a.active {
-  background-color: #4CAF50;
+  background-color: #A35C9B;
   color: white;
 }
 </style>
 </head>
 <body>
 
-<div class="topnav">
+<div class="topnav" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
 
-  <a class="active" (click)=home()>home</a>
-  <a (click)=book()>Book a Travel Package</a>
-  <a (click)=custom()>Custom Travel Package</a>
+  <a class="active hover" (click)=home()>Home</a>
+  <a (click)=book()>Book your Travel</a>
+  <a (click)=custom()>Customize your Travel</a>
 
   <a style="float: right;" (click)=logout() >Logout</a>
   <a style="float: right;" (click)=not()>Notifications</a>

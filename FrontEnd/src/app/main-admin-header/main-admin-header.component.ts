@@ -25,4 +25,10 @@ export class MainAdminHeaderComponent implements OnInit {
   reports() {
     this.router.navigate(['reports'])
   }
+  bookingreport() {
+    this.router.navigate(['bookingreport'])
+  }
+  not(){
+
+  }
 }
