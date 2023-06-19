@@ -18,6 +18,7 @@ export class CustomerComponent implements OnInit {
       toDate: '2023-05-30',
       editable: false
     },
+    
     // Add more travel objects as needed
   ];
 
