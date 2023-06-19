@@ -8,7 +8,7 @@
 
 
 # The Innovators - Concordia Travel Web Application
-Goal of this project is to develop a web application for a travel booking system that allows customers to browse and book travel packages, including flights, hotels, and activities. In addition, customers should be able to create their own custom packages by selecting individual components.
+Our system's primary goal is to provide customers with a refined and personalized travel booking experience, placing their needs at the center. We aim to empower users by enabling them to easily book pre-designed travel packages or create custom itineraries tailored to their preferences.
 
 # Link to the Deployed Application: http://qrco.de/be5sgp 
 
@@ -40,19 +40,6 @@ Goal of this project is to develop a web application for a travel booking system
   <img src="https://github.com/visnunathan8/COEN6311AA_INNOVATORS/assets/133191668/21de05b6-802b-4c6a-9255-9756cc2e0ec1">
 </p>
 
-* Travel Agent View :-
-
-  * Home Page
-  * Travel Package
-  * List All Customer Bookings
-  * Flights
-  * Hotels
-  * Activities List
-  * Notification Center
-<p align="center">
-  <img src="https://github.com/visnunathan8/COEN6311AA_INNOVATORS/assets/133191668/21de05b6-802b-4c6a-9255-9756cc2e0ec1">
-</p>
-
 * Admin View :-
 
   * Home Page
@@ -61,12 +48,12 @@ Goal of this project is to develop a web application for a travel booking system
   * Booking reports
   * Notification Center
 <p align="center">
-  <img src="">
+  <img src="https://github.com/visnunathan8/COEN6311AA_INNOVATORS/assets/133191668/7e2d1c8e-b80a-48cb-97c5-d9c1de2ad347">
 </p>
 
 # Technologies Used:
 * Our backend deployment -> https://www.heroku.com/ using Spring Boot
-* For our database ->  clearDB
+* For our database ->  clearDB using MySQL
 * Our frontend deployment -> https://www.netlify.com/ using Angular 7
 
 # Coding Technologies Used:
@@ -74,3 +61,4 @@ Goal of this project is to develop a web application for a travel booking system
 * HTML
 * CSS
 * TypeScript
+
