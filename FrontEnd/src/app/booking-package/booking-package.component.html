@@ -1,0 +1,65 @@
+<app-customer-header></app-customer-header>
+
+<div class="search-container">
+  <div class="search-label">SEARCH BOX :</div>
+  <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box">
+</div>
+
+
+<table class="travel-table">
+  <thead>
+    <tr>
+      <th>Travel Package Name</th>
+      <th>FlightId</th>
+      <th>HotelId</th>
+      <th>ActivitiesId</th>
+      <th>Source</th>
+      <th>Destination</th>
+      <th>Number Of Days</th>
+      <th>Total Price</th>
+      <th>Departure Date</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let travel of travels; let i = index">
+      <td>
+        <input type="text" [(ngModel)]="travel.travelPackageName" disabled>
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="travel.flightId" disabled>
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="travel.hotelId" disabled>
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="travel.activitiesId" disabled>
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="travel.sourceCity" disabled>
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="travel.destinationCity" disabled>
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="travel.noOfDays" disabled>
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="travel.totalPrice" disabled>
+      </td>
+      <td>
+        <input
+          type="date"
+          [(ngModel)]="travel.departureDate"
+        >
+      </td>
+      <td>
+        <button class="edit-btn" [disabled]="travel.editable" [ngClass]="{'disabled': travel.editable}" (click)="toggleEdit(i)">
+          {{ 'Book' }}
+        </button>
+        <button class="delete-btn" (click)="cancel(i)">Cancel</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br>

@@ -62,5 +62,6 @@ export class SignupComponent {
 
     // Clear the form fields when switching between account types
   }
+  
 }
 

@@ -5,7 +5,6 @@
   border-collapse: collapse;
 }
 
-
 .travel-table th,
 .travel-table td {
   padding: 10px;
@@ -93,3 +92,7 @@
   color: rgb(0, 0, 0);
 }
 
+.disabled {
+  opacity: 0.5; /* Reduce the opacity to visually indicate the button is disabled */
+  cursor: not-allowed; /* Change the cursor to indicate that the button is not clickable */
+}

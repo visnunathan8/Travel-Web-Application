@@ -46,21 +46,4 @@ export class BookingPackageService {
     return this.http.post<string>('http://localhost:8081/booking/deleteBooking', bookingPackage);
   }
 
-
-  // getBookingPackageList() {
-  //   return this.http.get<BookingPackage[]>('https://floating-everglades-27882.herokuapp.com/booking/findAllBookings/');
-  // }
-
-  // createBookingPackage(bookingPackage: BookingPackage) {
-  //   return this.http.post<BookingPackage>('https://floating-everglades-27882.herokuapp.com/booking/addBooking/', bookingPackage);
-  // }
-
-  // updateBookingPackage(bookingPackage: BookingPackage) {
-  //   return this.http.post<string>('https://floating-everglades-27882.herokuapp.com/booking/updateBooking/', bookingPackage);
-  // }
-
-  // deleteBookingPackage(bookingPackage: BookingPackage) {
-  //   return this.http.post<string>('https://floating-everglades-27882.herokuapp.com/booking/deleteBooking', bookingPackage);
-  // }
-
 }
