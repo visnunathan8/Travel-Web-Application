@@ -1,64 +1,62 @@
-<div style="background-image: url('assets/tim-toomey-S1R_H_ybMYg-unsplash.jpg');background-size: cover;
-background-position: center;
-height: 100vh;">
-<br><br>
-<div id="check" class="container">
-<h1 class="title" style="font-family:Candara">Voyage SignUp</h1>
-<form class="signup-form" (ngSubmit)="signup()">
-  <div class="form-group">
-    <label for="accountType">Account Type:</label>
-    <select id="accountType" name="accountType" [(ngModel)]="accountType" (change)="toggleFormFields()">
-      <option value="customer">Customer</option>
-      <option value="travelAgent">Travel Agent</option>
-    </select>
+<div style="background-image: url('https://images.pexels.com/photos/4096597/pexels-photo-4096597.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); background-size: cover; background-position: center; height: 100vh; display: flex; justify-content: center; align-items: center;">
+  <div class="container" style="background-color: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 20px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); text-align: center;  margin-top: -100px;">
+    <h1 class="title" style="font-family: Candara; color: #333; margin-bottom: 30px; letter-spacing: 2px; font-size: 56px; margin-top: -0px;">Voyage SignUp</h1>
+    <div class="form-container">
+    <form class="signup-form" (ngSubmit)="signup()">
+      <div class="form-group">
+        <label for="accountType" style="font-weight: bold; color: #555;">Account Type:</label>
+        <select id="accountType" name="accountType" [(ngModel)]="accountType" (change)="toggleFormFields()" style="width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+          <option value="customer">Customer</option>
+          <option value="travelAgent">Travel Agent</option>
+        </select>
+      </div>
+
+      <div *ngIf="accountType === 'customer'">
+        <div class="form-group">
+          <label for="firstName" style="font-weight: bold; color: #555;">First Name:</label>
+          <input type="text" id="firstName" name="firstName" [(ngModel)]="firstName" required style="width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+
+        <div class="form-group">
+          <label for="lastName" style="font-weight: bold; color: #555;">Last Name:</label>
+          <input type="text" id="lastName" name="lastName" [(ngModel)]="lastName" required style="width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+
+        <div class="form-group">
+          <label for="email" style="font-weight: bold; color: #555;">Email:</label>
+          <input type="email" id="email" name="email" [(ngModel)]="email" required style="width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+
+        <div class="form-group">
+          <label for="dob" style="font-weight: bold; color: #555;">Date of Birth:</label>
+          <input type="date" id="dob" name="dob" [(ngModel)]="dob" required style="width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+      </div>
+
+      <div *ngIf="accountType === 'travelAgent'">
+        <div class="form-group">
+          <label for="agentName" style="font-weight: bold; color: #555;">Travel Agent Name:</label>
+          <input type="text" id="agentName" name="agentName" [(ngModel)]="agentName" style="width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+
+        <div class="form-group">
+          <label for="location" style="font-weight: bold; color: #555;">Location:</label>
+          <input type="text" id="location" name="location" [(ngModel)]="location" style="width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="username" style="font-weight: bold; color: #555;">Username:</label>
+        <input type="text" id="username" name="username" [(ngModel)]="username" required style="width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      </div>
+
+      <div class="form-group">
+        <label for="password" style="font-weight: bold; color: #555;">Password:</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password" required style="width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+      </div>
+
+      <button type="submit" style="background-color: #A469FD; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Sign Up</button>
+    </form>
+    </div>
   </div>
-
-  
-  <div *ngIf="accountType === 'customer'">
-    <div class="form-group">
-      <label for="firstName">First Name:</label>
-      <input type="text" id="firstName" name="firstName" [(ngModel)]="firstName" required>
-    </div>
-
-    <div class="form-group">
-      <label for="lastName">Last Name:</label>
-      <input type="text" id="lastName" name="lastName" [(ngModel)]="lastName" required>
-    </div>
-
-    <div class="form-group">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" [(ngModel)]="email" required>
-    </div>
-
-    <div class="form-group">
-      <label for="dob">Date of Birth:</label>
-      <input type="date" id="dob" name="dob" [(ngModel)]="dob" required>
-    </div>
-  </div>
-
-  <div *ngIf="accountType === 'travelAgent'">
-    <div class="form-group">
-      <label for="agentName">Travel Agent Name:</label>
-      <input type="text" id="agentName" name="agentName" [(ngModel)]="agentName">
-    </div>
-
-    <div class="form-group">
-      <label for="location">Location:</label>
-      <input type="text" id="location" name="location" [(ngModel)]="location">
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" [(ngModel)]="username" required>
-  </div>
-
-  <div class="form-group">
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" [(ngModel)]="password" required>
-  </div>
-
-  <button type="submit">Sign Up</button>
-</form>
-</div>
 </div>

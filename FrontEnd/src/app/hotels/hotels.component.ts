@@ -11,6 +11,7 @@ export class HotelComponent implements OnInit {
   searchKeyword: string = ''; // Variable to store the search keyword
   showAddForm: boolean = false; // Variable to control the display of the add form
   newHotel: Hotel = new Hotel(); // Object to store the details of the new hotel
+  showAddPopup: boolean = false;
 
   constructor(private hotelService: HotelService) { }
 
@@ -26,17 +27,24 @@ export class HotelComponent implements OnInit {
   }
 
   deleteHotel(index: number) {
-    const hotelId = this.filteredHotels[index].hotelId;
-    this.hotelService.deleteHotel(hotelId).subscribe(
-      (response) => {
-        console.log('Hotel deleted successfully');
-        this.getHotelList(); // Fetch the updated list of hotels from the server
-      },
-      (error) => {
-        console.log('Error occurred while deleting hotel:', error);
-      }
-    );
+    const hotel = this.filteredHotels[index];
+    if (hotel && hotel.hotelId) {
+      const hotelId = hotel.hotelId;
+      this.hotelService.deleteHotel(hotelId).subscribe(
+        (response) => {
+          console.log('Hotel deleted successfully');
+          this.getHotelList(); // Fetch the updated list of hotels from the server
+        },
+        (error) => {
+          console.log('Error occurred while deleting hotel:', error);
+        }
+      );
+    } else {
+      console.log('Invalid hotel or hotelId');
+      // Handle the case when the hotel or hotelId is not valid
+    }
   }
+
 
   deleteNewHotel() {
     this.newHotel = new Hotel();
@@ -45,6 +53,11 @@ export class HotelComponent implements OnInit {
 
   addNewHotel() {
     this.showAddForm = true;
+    this.showAddPopup = true;
+  }
+
+  cancel() {
+    this.showAddPopup = false;
   }
 
   saveHotel(hotel: Hotel) {
@@ -55,6 +68,7 @@ export class HotelComponent implements OnInit {
           this.resetForm();
           this.showAddForm = false;
           this.getHotelList(); // Refresh the hotel list
+          this.cancel();
         },
         (error) => {
           console.log('Error occurred while saving hotel:', error);
@@ -80,8 +94,8 @@ export class HotelComponent implements OnInit {
   applyFilter() {
     if (this.searchKeyword.trim()) {
       this.filteredHotels = this.filteredHotels.filter(hotel =>
-        hotel.hotelName.toLowerCase().includes(this.searchKeyword.toLowerCase()) ||
-        hotel.location.toLowerCase().includes(this.searchKeyword.toLowerCase())
+        hotel?.hotelName?.toLowerCase().includes(this.searchKeyword.toLowerCase()) ||
+        hotel?.location?.toLowerCase().includes(this.searchKeyword.toLowerCase())
       );
     } else {
       // Reset the filteredHotels array to show all hotels

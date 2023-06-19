@@ -1,36 +1,33 @@
-<div style="background-image: url('assets/tim-toomey-S1R_H_ybMYg-unsplash.jpg');background-size: cover;
-background-position: center;
-height: 100vh;">
-<br><br>
-<div id="check" class="container">
-  <h1 class="title" style="font-family:Candara">Voyage SignIn</h1>
-  <div class="form-container">
-    <form class="signup-form" (ngSubmit)="checkLogin()">
-      <div class="form-group">
-        <label for="username">User Name:</label>
-        <input type="text" id="username" name="username" [(ngModel)]="username" required>
-      </div>
+<div style="background-image: url('https://images.pexels.com/photos/4096597/pexels-photo-4096597.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2'); background-size: cover; background-position: center; height: 100vh; display: flex; justify-content: center; align-items: center;">
+  <div class="container" style="background-color: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 30px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); text-align: center; margin-top: -100px;">
+    <h1 class="title" style="font-family: Candara; color: #333;margin-top: 0px; margin-bottom: 30px; letter-spacing: 2px; font-size: 56px;">Voyage SignIn</h1>
+    <div class="form-container">
+      <form class="signup-form" (ngSubmit)="checkLogin()" style="border-radius: 30px;">
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label for="username" style="font-weight: bold; color: #555; margin-right: 10px;">User Name:</label>
+          <input type="text" id="username" name="username" [(ngModel)]="username" required style="width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
 
-      <div class="form-group">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" [(ngModel)]="password" required>
-      </div>
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label for="password" style="font-weight: bold; color: #555; margin-right: 10px;">Password:</label>
+          <input type="password" id="password" name="password" [(ngModel)]="password" required style="width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+        </div>
 
-      <div class="form-group">
-        <label for="accountType">Account Type:</label>
-        <select id="accountType" name="accountType" [(ngModel)]="accountType" required>
-          <option value="">Select Account Type</option>
-          <option value="customer">Customer</option>
-          <option value="travelAgent">Travel Agent</option>
-          <option value="admin">Admin</option>
-        </select>
-      </div>
+        <div class="form-group" style="margin-bottom: 20px;">
+          <label for="accountType" style="font-weight: bold; color: #555; margin-right: 10px;">Account Type:</label>
+          <select id="accountType" name="accountType" [(ngModel)]="accountType" required style="width: 300px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            <option value="">Select Account Type</option>
+            <option value="customer">Customer</option>
+            <option value="travelAgent">Travel Agent</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
 
-      <div class="button-container">
-        <button type="submit" class="btn btn-success">Login</button>
-        <button class="btn btn-success" (click)="signup()">Sign Up</button>
-      </div>
-    </form>
+        <div class="button-container" style="display: flex; justify-content: center;">
+          <button style="background-color: #7820FC; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;" type="submit" class="btn btn-success" style="margin-right: 10px;">Login</button>
+          <button style="background-color: #A469FD; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;" class="btn btn-success" (click)="signup()">Sign Up</button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>
 </div>
