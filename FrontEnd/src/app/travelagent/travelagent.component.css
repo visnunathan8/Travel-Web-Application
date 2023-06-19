@@ -1,95 +1,121 @@
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { travelagentaccount, TravelagentService } from '../service/travelagent.service';
 
-/* app.component.css */
-.travel-table {
-  width: 100%;
-  border-collapse: collapse;
+@Component({
+  selector: 'app-travel-agent-admin-view',
+  templateUrl: './travel-agent-admin-view.component.html',
+  styleUrls: ['./travel-agent-admin-view.component.css']
+})
+export class TravelAgentAdminViewComponent implements OnInit {
+  showAddForm: boolean = false;
+  searchKeyword: string = '';
+  newAgent: travelagentaccount = new travelagentaccount();
+  filteredAgents: travelagentaccount[] = [];
+  showAddPopup: boolean = false;
+  agents: travelagentaccount[] = [];
+  constructor(private agentService: TravelagentService, private changeDetectorRef: ChangeDetectorRef) { }
+
+  ngOnInit() {
+    this.getAgentList();
+  }
+
+  addNewAgent() {
+    this.showAddForm = true;
+    this.showAddPopup = true;
+  }
+
+  deleteNewFlight() {
+    this.newAgent = new travelagentaccount();
+    this.showAddForm = false;
+    this.showAddPopup = false;
+  }
+ 
+  cancel() {
+    this.showAddPopup = false;
+  }
+
+  saveAgent(agent: travelagentaccount) {
+    if (agent != null) {
+      this.agentService.createTravelAgentAccount(agent).subscribe(
+        (response) => {
+          console.log('Agent saved successfully');
+          this.resetForm();
+          this.showAddForm = false;
+          this.filteredAgents.push(response);
+          this.showAddPopup = false;
+
+        },
+        (error) => {
+          console.log('Error occurred while saving Agent:', error);
+        }
+      );
+    } else {
+      alert('Please enter all required fields!');
+    }
+  }
+
+
+  getAgentList() {
+    this.agentService.getTravelAgentAccountList().subscribe(
+      (agent: travelagentaccount[]) => {
+        this.agents = agent;
+        this.applyFilter(); 
+        this.changeDetectorRef.detectChanges();
+      },
+      (error) => {
+        console.log('Error occurred while retrieving flight list:', error);
+      }
+    );
+  }
+
+  toggleEdit(index: number) {
+    const agent = this.filteredAgents[index];
+    if (agent.editable) {
+      this.updateAgent(index);
+    }
+    agent.editable = !agent.editable;
+  }
+
+  updateAgent(index: number) {
+    const agent = this.filteredAgents[index];
+    this.agentService.updateTravelAgentAccount(agent).subscribe(
+      (response) => {
+        console.log('Flight updated successfully');
+        agent.editable = false;
+        this.changeDetectorRef.detectChanges(); // Trigger change detection
+      },
+      (error) => {
+        console.log('Error occurred while updating flight:', error);
+      }
+    );
+  }
+
+  // deleteAgent(index: number) {
+  //   const flightId = this.agent[index].travelAgentId;
+  //   this.agentService.de(Number(flightId)).subscribe(
+  //     (response) => {
+  //       console.log('Flight deleted successfully');
+  //       this.flights.splice(index, 1); // Remove the deleted flight from the flights array
+  //       this.getFlightList();
+  //     },
+  //     (error) => {
+  //       console.log('Error occurred while deleting flight:', error);
+  //     }
+  //   );
+  // }
+
+
+
+
+  resetForm() {
+    this.newAgent = new travelagentaccount();
+  }
+
+  applyFilter() {
+    this.filteredAgents = this.agents.filter(agent =>
+      agent?.agentName?.toLowerCase().includes(this.searchKeyword.toLowerCase()) ||
+      agent?.username?.toLowerCase().includes(this.searchKeyword.toLowerCase())
+    );
+  }
+
 }
-
-
-.travel-table th,
-.travel-table td {
-  padding: 10px;
-  text-align: left;
-}
-
-.travel-table th {
-  background-color: #f2f2f2;
-  font-weight: bold;
-}
-
-.add-btn {
-  background-color: #081ddd;
-  color: white;
-  margin-right: 5px;
-}
-
-.add-btn,
-.edit-btn,
-.delete-btn {
-  padding: 5px 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.edit-btn {
-  background-color: #4CAF50;
-  color: white;
-  margin-right: 5px;
-}
-
-.delete-btn {
-  background-color: #f44336;
-  color: white;
-}
-
-.edit-btn:hover,
-.delete-btn:hover {
-  opacity: 0.8;
-}
-
-/* Add more styling and effects as per your preference */
-
-.search-container {
-  margin: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.search-label {
-  font-size: 18px;
-  color: rgb(216, 0, 0);
-}
-
-.search-box {
-  border: none;
-  border-radius: 20px;
-  padding: 10px 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 16px;
-}
-
-.search-button {
-  background-color: #007bff;
-  border: none;
-  border-radius: 20px;
-  color: #fff;
-  padding: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.search-button:hover {
-  background-color: #0056b3;
-}
-
-.search-button i {
-  font-size: 18px;
-}
-
-.search-box::placeholder {
-  color: rgb(0, 0, 0);
-}
-
