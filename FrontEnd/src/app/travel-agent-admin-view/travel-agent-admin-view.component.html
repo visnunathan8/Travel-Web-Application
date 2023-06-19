@@ -1,22 +1,22 @@
 <app-main-admin-header></app-main-admin-header>
-<div class="search-container">
-  <div class="search-label">SEARCH BOX :</div>
-  <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box" (input)="applyFilter()">
-</div>
 
-<table class="agent-table">
+<div class="container">
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box" (input)="applyFilter()">
+  </div>
+  <button class="add-btn" (click)="addNewAgent()">Add Agent</button>
+</div>
+ 
+<table class="travel-table">
   <thead>
-    <tr>
+    <tr style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"> 
       <th>Agent Name</th>
-      <th>Location</th>
-      <th>Username</th>
-      <th>Password</th>
+      <th>Agent Location</th>
+      <th>Agent Username</th>
       <th>Action</th>
-    </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let agent of filteredAgents; let i = index">
-
+    <tr *ngFor="let agent of filteredAgents; let i = index" [class.selected]="agent.editable">
       <td>
         <input type="text" [(ngModel)]="agent.agentName" [disabled]="!agent.editable">
       </td>
@@ -27,43 +27,45 @@
         <input type="text" [(ngModel)]="agent.username" [disabled]="!agent.editable">
       </td>
       <td>
-        <input type="text" [(ngModel)]="agent.password" [disabled]="!agent.editable">
-      </td>
-      <td>
-        <button class="edit-btn" (click)="toggleEdit(i)">
-          {{ agent.editable ? 'Save' : 'Edit' }}
-        </button>
-        <button class="delete-btn" (click)="deleteAgent(i)" disabled="true">Delete</button>
+        <div style="margin-bottom: 10px;">
+          <button class="edit-btn" (click)="toggleEdit(i)">
+            {{ agent.editable ? 'Save' : 'Edit' }}
+          </button>
+        </div>
+        <!-- <div>
+          <button class="delete-btn" (click)="deleteAgent(i)">Delete</button>
+        </div> -->
       </td>
     </tr>
   </tbody>
 </table>
+
 <br>
-<div *ngIf="showAddForm">
-  <table class="agent-table">
-    <tbody>
-      <tr>
-        <td>
-          <input type="text" [(ngModel)]="newAgent.agentName">
-        </td>
-        <td>
-          <input type="text" [(ngModel)]="newAgent.location">
-        </td>
-        <td>
-          <input type="text" [(ngModel)]="newAgent.username">
-        </td>
-        <td>
-          <input type="text" [(ngModel)]="newAgent.password">
-        </td>
-        <td>
-          <button class="edit-btn" (click)="saveAgent(newAgent)">
-            Save
-          </button>
-          <button class="delete-btn" (click)="deleteNewAgent()">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div *ngIf="showAddPopup" class="popup-overlay show">
+  <div class="popup-content show">
+    <h2>Add Agent</h2>
+    <div>
+      <label>Agent Name:</label>
+      <input type="text" [(ngModel)]="newAgent.agentName">
+    </div>
+    <div>
+      <label>Location:</label>
+      <input type="text" [(ngModel)]="newAgent.location">
+    </div>
+    <div>
+      <label>Username:</label>
+      <input type="text" [(ngModel)]="newAgent.username">
+      
+    </div>
+    <div>
+      <label>Password:</label>
+      <input type="text" [(ngModel)]="newAgent.password">
+    </div>
+
+    <div class="popup-buttons">
+      <button class="cancel-btn" (click)="cancel()">Cancel</button>
+      <button class="save-btn" (click)="saveAgent(newAgent)">Save</button>
+    </div>
+  </div>
 </div>
 
-<button class="add-btn" (click)="addNewAgent()">Add Agent</button>
