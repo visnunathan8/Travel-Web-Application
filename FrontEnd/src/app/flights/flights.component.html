@@ -1,0 +1,104 @@
+<app-adminheader></app-adminheader>
+
+<div class="container ">
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box" (input)="applyFilter()">
+  </div>
+  
+  <button class="add-btn" (click)="addNewFlight()">Add Flight</button>
+</div>
+<div style="max-height: 575px; overflow-y: scroll;">
+
+<table class="flight-table">
+  <thead>
+    <tr style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+      <th>Airline</th>
+      <th>Flight Number</th>
+      <th>Ticket Price</th>
+      <th>No. of Seats</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let flight of filteredFlights; let i = index" [class.selected]="flight.editable">
+      <td>
+        <input type="text" [(ngModel)]="flight.airline" [disabled]="!flight.editable">
+      </td>
+      <td>
+        <input type="text" [(ngModel)]="flight.flightNumber" [disabled]="!flight.editable">
+      </td>
+      <td>
+        <input type="number" [(ngModel)]="flight.ticketPrice" [disabled]="!flight.editable">
+      </td>
+      <td>
+        <input type="number" [(ngModel)]="flight.noOfSeats" [disabled]="!flight.editable">
+      </td>
+      <td>
+        <div style="margin-bottom: 10px;">
+          <button class="edit-btn" (click)="toggleEdit(i)">
+            {{ flight.editable ? 'Save' : 'Edit' }}
+          </button>
+        </div>
+        <div>
+          <button class="delete-btn" (click)="deleteFlight(i)">Delete</button>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br>
+<!-- <div *ngIf="showAddForm">
+  <table class="flight-table">
+    <tbody>
+      <tr>
+        <td>
+          <input type="text" [(ngModel)]="newFlight.airline">
+        </td>
+        <td>
+          <input type="text" [(ngModel)]="newFlight.flightNumber">
+        </td>
+        <td>
+          <input type="number" [(ngModel)]="newFlight.ticketPrice">
+        </td>
+        <td>
+          <input type="number" [(ngModel)]="newFlight.noOfSeats">
+        </td>
+        <td>
+          <button class="edit-btn" (click)="saveFlight(newFlight)">
+            Save
+          </button>
+          <button class="delete-btn" (click)="deleteNewFlight()">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
+
+
+<div *ngIf="showAddPopup" class="popup-overlay show">
+  <div class="popup-content show">
+    <h2>Add Hotel</h2>
+    <div>
+      <label>Airline:</label>
+      <input type="text" [(ngModel)]="newFlight.airline">
+    </div>
+    <div>
+      <label>Flight Number:</label>
+      <input type="text" [(ngModel)]="newFlight.flightNumber">
+    </div>
+    <div>
+      <label>Ticket Price:</label>
+      <input type="number" [(ngModel)]="newFlight.ticketPrice">
+    </div>
+    <div>
+      <label>Number of Seats:</label>
+      <input type="number" [(ngModel)]="newFlight.noOfSeats">
+    </div>
+
+    <div class="popup-buttons">
+      <button class="cancel-btn" (click)="cancel()">Cancel</button>
+      <button class="save-btn" (click)="saveFlight(newFlight)">Save</button>
+    </div>
+  </div>
+</div>

@@ -34,30 +34,4 @@ height: 100vh;">
       <input type="date" id="dob" name="dob" [(ngModel)]="dob" required>
     </div>
   </div>
-
-  <div *ngIf="accountType === 'travelAgent'">
-    <div class="form-group">
-      <label for="agentName">Travel Agent Name:</label>
-      <input type="text" id="agentName" name="agentName" [(ngModel)]="agentName">
-    </div>
-
-    <div class="form-group">
-      <label for="location">Location:</label>
-      <input type="text" id="location" name="location" [(ngModel)]="location">
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" [(ngModel)]="username" required>
-  </div>
-
-  <div class="form-group">
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" [(ngModel)]="password" required>
-  </div>
-
-  <button type="submit">Sign Up</button>
-</form>
-</div>
 </div>

@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+  }
+
+  .box {
+    width: 400px;
+    height: 410px;
+    background-color: #B3798F;
+    border-radius: 5px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .title_center {
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+  }
+
+  body {
+    overflow: hidden;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 250;
+  }
+  
+  th {
+    color: #333;
+  }
+  
+  td {
+
+    color: rgb(78, 76, 76);
+  }

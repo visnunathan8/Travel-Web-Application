@@ -10,17 +10,17 @@ import { travelagentaccount, TravelagentService } from '../service/travelagent.s
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent {
-  accountType: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  dob: string;
-  agentName: string;
-  location: string;
-  username: string;
-  password: string;
-  customer: customeraccount;
-  travelagent: travelagentaccount;
+  accountType: string ='';
+  firstName: string = '';
+  lastName: string ='';
+  email: string ='';
+  dob: string = '';
+  agentName: string='';
+  location: string='';
+  username: string='';
+  password: string='';
+  customer: customeraccount = new customeraccount();
+  travelagent: travelagentaccount = new travelagentaccount();
 
   constructor(private customerService: customerAccountService, private travelAgentService: TravelagentService, private router: Router, private loginservice: AuthenticationService) { }
   ngOnInit() {

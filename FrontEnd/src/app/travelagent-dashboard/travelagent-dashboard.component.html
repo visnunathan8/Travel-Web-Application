@@ -1,123 +1,36 @@
+
 <app-adminheader></app-adminheader>
-<div class="search-container">
-  <div class="search-label">SEARCH BOX :</div>
-  <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box">
-</div>
-
-
-<table class="travel-table">
-  <thead>
-    <tr>
-      <th>Travel Package Name</th>
-      <th>FlightId</th>
-      <th>HotelId</th>
-      <th>ActivitiesId</th>
-      <th>Source</th>
-      <th>Destination</th>
-      <th>Number Of Days</th>
-      <th>Total Price</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let travel of travels; let i = index">
-      <td>
-        <input type="text" [(ngModel)]="travel.travelPackageName" [disabled]="!travel.editable">
-      </td>
-      <td>
-        <select [(ngModel)]="travel.flightId" [disabled]="!travel.editable">
-          <option value="" disabled>Select Flight</option>
-          <option *ngFor="let option of flightOptions" [value]="option.flightId">{{ option.flightId }}</option>
-        </select>
-      </td>
-      <td>
-        <select [(ngModel)]="travel.hotelId" [disabled]="!travel.editable">
-          <option value="" disabled>Select Hotel</option>
-          <option *ngFor="let option of hotelOptions" [value]="option.hotelId">{{ option.hotelId }}</option>
-        </select>
-      </td>
-      <td>
-        <select [(ngModel)]="travel.activitiesId" [disabled]="!travel.editable">
-          <option value="" disabled>Select Activities</option>
-          <option *ngFor="let option of activitiesOptions" [value]="option.activitiesId">{{ option.activitiesId }}</option>
-        </select>
-      </td>
-      <td>
-        <input type="text" [(ngModel)]="travel.sourceCity" [disabled]="!travel.editable">
-      </td>
-      <td>
-        <input type="text" [(ngModel)]="travel.destinationCity" [disabled]="!travel.editable">
-      </td>
-      <td>
-        <input type="text" [(ngModel)]="travel.noOfDays" [disabled]="!travel.editable">
-      </td>
-      <td>
-        <input type="text" [(ngModel)]="travel.totalPrice" [disabled]="!travel.editable">
-      </td>
-      <td>
-        <button class="edit-btn" (click)="toggleEdit(i)">
-          {{ travel.editable ? 'Save' : 'Edit' }}
-        </button>
-        <button class="delete-btn" (click)="deleteTravel(i)">Delete</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
 <br>
-<div *ngIf="showAddForm">
-  <table class="travel-table">
-    <tbody>
-      <tr>
-        <td>
-          <input type="text" [(ngModel)]="newTravel.travelPackageName">
-        </td>
-        <td>
-          <select [(ngModel)]="newTravel.flightId">
-            <option value="" disabled>Select Flight</option>
-            <option *ngFor="let option of flightOptions" [value]="option.flightId">
-              {{ option.flightId }}
-            </option>
-          </select>
-        </td>
-        <td>
-          <select [(ngModel)]="newTravel.hotelId">
-            <option value="" disabled>Select Hotel</option>
-            <option *ngFor="let option of hotelOptions" [value]="option.hotelId">
-              {{ option.hotelId }}
-            </option>
-          </select>
-        </td>
-        <td>
-          <select [(ngModel)]="newTravel.activitiesId">
-            <option value="" disabled>Select Activities</option>
-            <option *ngFor="let option of activitiesOptions" [value]="option.activitiesId">
-              {{ option.activitiesId }}
-            </option>
-          </select>
-        </td>
-        <td>
-          <input type="text" [(ngModel)]="newTravel.sourceCity">
-        </td>
-        <td>
-          <input type="text" [(ngModel)]="newTravel.destinationCity">
-        </td>
-        <td>
-          <input type="text" [(ngModel)]="newTravel.noOfDays">
-        </td>
-        <td>
-          <input type="text" [(ngModel)]="newTravel.totalPrice">
-        </td>
-        <td>
-          <button class="edit-btn" (click)="saveTravel(newTravel)">
-            Save
-          </button>
-
-          <button class="delete-btn" (click)="deleteNewTravel()">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<h1 style="color: #532F4E;font-size: xx-large;">Hello {{travelagent.agentName}}!</h1>
+<div class="container">
+    <div class="box">
+    <div class="relative">
+        <img alt="..." src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAz1BMVEX///+AAIB9AH16AHq9fb2BAIH+/P53AHf8+PyEAIT69frh0eH8+fz68/r37vfkz+Tz6PPw4/Dv3e+PHY/bv9vYt9iVP5W7iLvNns3q1+rLmcvQo9DEisTky+TUr9S2fbamTKajWqOlVqXBkcG1cLWPLI+XMZfQr9CeSJ6LIouYOpitbK2lUaXDiMOKHYqYR5jBk8Hau9qvc6/LpcuVJJWeOp6qZqqjWaOtda3Jp8mRN5HLlcuMAIycMZy0aLSqWarWvtbgwOCbUJvCmMKlZKXaWYEmAAAMgklEQVR4nO1daVviPBemp1DavtCFRda2SsVhG0RBHJcHdJz//5vegohAU0japAlzzf1tLh3CbZKz5SyZTBpQCrrVqLZe2iu81KdV07aKBSWVtdlDtUqV2nKm5fPyFvl8Pvf6cO2atsH76yWFXqr4nbIkA0iHAJBBu7n+Ydq8v2QC2NVaT0Ox26EJ5fnUKfL+pvFg+lflY+y2JHMDzz3D09rIXmin6W1ISv3H1pnto7HoSrj8NiQHLu8vTYBCU8M4nqHTeunw/uKYUCs9mZjfmmPOOwu5avnlWPzWHEcV8c0AZ0h2AQ8oluuiS5zqQI7Pb0VREvyktvoJNvATuXmDN4toKM1xYoIBOiZvIlFQfWwdfxTQE5Si7ueoEAwoDoSkqLTo7OCaYq/Emw4CLj2CkiR3xJOoTnw9j6R4rfJmdACjR5VgoDSavCntQ7mmTFCC7jtvUnuo5ygTDCh2RJI2jQvaW7hCrcCb1xa6x4CfBP073sS2uEtujSIpzi3ezDaw5kwISpLmCuItVjU2BAPTRowQXHHEaAsDilXe5NZwkvm8RxnOeJNbQblktoWB8SbCJjbY8Qs28ZI3vQDX7A5pAI2/YaPS9SkOAT95E8xUmRIMFAZ3lbhgy1Dq8g71G8+MGeZeODOs9tkSDIxTzs7+T/qO4QHDC75xN33OmKAkjfm+KzZuGV/D4CL6XBlWu6wJSnDP1cGos3Kcdhj+5vpSU2NOUIJuhSPB4i/m1zAwTX9wZFh6TIEhPHFk6DCJIh5A9nV+DCtsgmz7gCHHkBuzGNQeQ57vUD9Y22xrhgOO6uIphUMqwQ1HhtN0GPKzvdVJKgzL/BjqtX8M/zH8x/AfQ9ZQ/b+dYSEdbfH3a3yeVtuPVBjyTHJLx/LmmViTjvc05+g9peMB33P0gJ1BGlGMGscoRiqRKHnKj2DGuP/bY21KGmYb13hpZpJCVJ9rzDvjjtkz5Ptu4bB+5F4pC66VUPbvv/39MDNkTZD3G3Dmhf07Pud0k3fmuRhXnHNMmefTSB5fgplMhzFD3tcwk2kyzmt75p7NXmLMcMmbYCYzY5t9yTutLUCWaQatxD+DNmOy3EN44E0vQIHlMZWFqNF7YXhMNe6SdIUGO8MNRrzJrWGwq5mRxaheU5jF9qEsSL1z44YRRbkmSLlzkVE8Csq88/S3qFBphxFmyDd3dhfWkAlDTYSyrg2mLIKKcCWInFmhxCIgpU1409pFm0E9fk+oTjw2/VRarc2b1D5eqHeNuBDCJP2GQf2tVADXdx91ugzhRhhd+AWdrukGLd6EwrijyRAeOL5sR6FIteRZyFZY5iu1XZQ9QZyKfajU2vDAQIAIGwo2rcwMbcq9gDsCd106FHkWyRyHXqNxTnlX/h6FTaOn2VhAVfgNJ7mjCAtxGmCh0M4nJVgW9hJukLBbDWhiNaJDwEqWrqjVeRM4DSeRyvBE1YQ7KEwTuIriasJd6H5cgQodoUIz0ShmYxJ85pqFSAIjXgrK+AykzBcasaTN/AykzBY/Y3jDfWHeYXBgkJvggrz3YuOB+JjKwoUPj4P8mObP6pBmMlVihnAWyv4b5HlEmuiDLQ5QIrVr4PWcdEUA65WYIe+vTAhyhkI0YyXA38/QJr6H58bQIZWl8B/vr0yINqk+FCKTlASXxAwveX9lQtyRTiwRI1eWBISTn2Ak3Kv2KSguUVhRqGEWmChUsB8xIDc8Q4IBGpjhGtDaZ+ZXbGG1cQY9yrOqgGkJuHBmp4Y9AizOyG0qhPMLlObgyKwykMbL8HOoIqgfpduVxRIh8q367zF66CPknofvYTaqOy0JqDosxx+A/IqMyltT77YMsHsng3/kxlc1B7VbxiivDasNsfJNStNheXXhIKIcUm24/n2vLH2N5tb6o18f1QgNUSqDJOd6fkWYjVQc/3EzHVe+jrxCqtVw3t6mk8nk4+ntzSkZkb/56ZaA1B22xNCS79fPW1kCsxNv8Iqqqiemxiu+/HWSx7dZ/iFGd7QnRvLJVffuVBeQ+kuur95Gs3yg7k57CCc1gb4fHQB5Vud0IRW7PguZLCe8PN2eLpul41IyNHoIoOzb6UvWQmmKHA1/LCZomF4ZZChPGsc2EvEeEKihiZmy5dP46KFNTogUDWrlXlufaZAHx4Qk8k0H5H6tkqL1ak9uo1z4yBcky/9+NQWtcxcldIsRYchAe3gIA4gJ9Obv6BBFVP28Pd+z3KDrR5y66CAdSM/DVHL6qr1jo8XhGSn4jNHh7+UiRqkeC9IF+5hlXgtlLk+MNR4jC85GCPGxRJ654yW3gVx9Yao77J/aqShhDjWCqoXK58ujftM6NRIE5BuXGUejilFTAfPwf1TRJfs5xK3CaK0FsDSZiFXFGR67gNv1b8MelBvxq9fhVTycFAd49RkkT1l1zBwZREOZ64gvGh5RqV5hLQLSyKVtAVSucAen52qh/xwRc4Pn0E5gD8yAPl3Nob7gJzmFJ8AqUQzDM9Va2B3uAs1BMUnMGuDcwK+lB6HvHTF9Dp4Pt6FAMlgYpCUlgVNwcQ/oJ7TQRaxHfMWLQ/VN2C1ULt/RsOMsj4ygBP6htWKhX2nCspR0dDKMm4l1o2JeEa25WvYxZFm1kP5CN+RhTInXSvzioVRj1IiEmz2ghsuDFmpcYvwiT2mEx0ShHKUZJ1EUnkK3ww51XYBy2IBtxMnzh+ckHd2yhFdws+YwfDksb18cww0i47kSK0EcEpQRIc4W1pIzhIujN3eMdpBHCLNLjzmIALSYiZvGMnbZK7I1UOlxeyK6TZSUt+LWhUGuHUdr2PHHU8oeOkaxKTKFR7TdbMYuCwMtxuQy6z5+LSH8F2EWf7q3MlrAK634pdKgtUgr3gwsNyYSEVbxp38po8PYapKOWkDaI1N5SVRIGBFxMz83KSJaZSRaEmHGH4VLmvBzsBw6DW+xOYZj5Ba7yer5yfpM2MkIBsuhVittrc4satGkbd9kgkagCnktweFqqBean18/hQuErFGTF9jiO4ztxGuhXmis79nBOcQfgDy7P7RoyN+MgklhakU/vEvTb/8d/oRP8YJCW40IPXwI/T75UogTo+5MioBuyOopUuhWgDtk4J1KZ4RQ2HQ/yOQf/rXfqcwg8HAicDqVKcZhYfKxK0kgZHnHrMo8WBVLKTboNOs8dGns+d7HHvbTK9Lp+AYfGDcxnpMWXuvXvrlfKe/9WD44T5RGmGPNnaU0PRVu90S37u+LSpjtn+JkZvD3x5ZPh/vVD0rNkLS9ET/2oQbaby9r40XzMVb930mGRY8SQ/B2dV7lcI9gsevRVWm1e4PTDA1anTphsHNM1WzoU193jqnq01kzOBqnGVpzSgwlaWeKkVUOfSrs2AQlahMW8hgMad2IvZBbFREv3SmSoSS/JTyG1AaNwU62KUrHwvaYFj1q5waDoU2vOzfUv1RiEaUL5G37zkb4DMdFygwfvo6pi8pUgJvNT2k2BMdhSHOsypepj/6r5TbHtEixqXvKDGHx+ZlWhCDZHFOTYoteHIY0RxrmPo9pC/1T6HyayTRngKQqS6VtVDHylXvt6+g0W2Wnqg+llTBZ7VJkG+XPcE2dZldQDIbUrLZPrLzEyDwnGKqBJP2P5oIYDIs1mn9S6KhHPKO1h1Wl2gocwy7NPNFcUOq+Z4p/Ijdp7GYUmrdCAkSMLwQascQd3B/Nc5pkHDrO/QZQwwhFFUmydk4v+ewcSTeEe4vuanjPMxWq4/By90fCr3CRpduu3sN7KKX6Z5WA/TDW7VK3mGF9Kn1WeUDDrumvspmqwhxD/Mqaeqw8Gs6QRyRlZe3zowg9opRa3U/6Cpw2oEOYM6y36EUW0gBcEee2K+8DtqMbaQJyXpzSTmtxLpcR+nFz99xj3QKEAUjz+Fm0RjuyDE8UQK6TrId7w78lyNNPHaB16kmr2QqNaSeH06IkfQBo8x8lCtn6il25fhWPI8CsbVLra1MsTS/hVB+WNAF5bVm16VawKVbzQQMRthJA1i7dIpOaYMu9vuiuluBHThp3e1mmPYlUs35/dTHWUqcZrKf1L/5kW0eL+SlBd1zfm1+UteBqpsAzOJWgjXtzb+I6KbZW0G2nOp14nZvX1RdgQxTW0AaP3sf0zuTQOCKQPkap4bxNa/Pe7FWTZFkGSEx2/RHBR0na66w3rz29mQ07updNSjx1w7JLzp3b9BaXD2uu+fxXNyECrP7TitfD5cKru3dmybYMXaymWIpSKKjFomFZtvnutprtLDbazZb7btqWZRT1QqFAs9vX/wHqfghrMFw60AAAAABJRU5ErkJggg==" style="margin-top:-75px;height: 120px;width:120px;border-radius: 1000px;">
+        </div>
+        <mat-card style="background-color:#EAD9E0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+            <mat-card-header class="title_center" style="background-color: #F2EBED; padding: 16px;">
+              <mat-card-title class="title_center" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 24px; color: #333;">My Profile</mat-card-title>
+            </mat-card-header>
+            <mat-card-content style="padding: 16px;">
+                <table>
+                    <tr>
+                      <th>Agent ID:</th>
+                      <td>{{travelagent.travelAgentId}}</td>
+                    </tr>
+                    <tr>
+                      <th>Username:</th>
+                      <td>{{travelagent.username}}</td>
+                    </tr>
+                    <tr>
+                      <th>Name:</th>
+                      <td>{{travelagent.agentName}}</td>
+                    </tr>
+                    <tr>
+                      <th>Location:</th>
+                      <td>{{travelagent.location}}</td>
+                    </tr>
+                  </table> </mat-card-content>
+          </mat-card>
+          
+    </div>
 </div>
-
-<button class="add-btn" (click)="addNewTravel()">Add Travel Package</button>
-

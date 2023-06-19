@@ -7,10 +7,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 @SpringBootApplication(scanBasePackages = {
-    "com.concordia.TravelBookingSystem.controller",
-    "com.concordia.TravelBookingSystem.entity",
-    "com.concordia.TravelBookingSystem.repository",
-    "com.concordia.TravelBookingSystem.service"
+    "com.concordia.TravelBookingSystem.Activities",
+    "com.concordia.TravelBookingSystem.Booking",
+    "com.concordia.TravelBookingSystem.Customer",
+    "com.concordia.TravelBookingSystem.Flight",
+    "com.concordia.TravelBookingSystem.Hostel",
+    "com.concordia.TravelBookingSystem.Payment",
+    "com.concordia.TravelBookingSystem.TravelAgent",
+    "com.concordia.TravelBookingSystem.TravelPackage"
 })
 @CrossOrigin(origins="*")
 public class TravelBookingSystemApplication {

@@ -23,3 +23,5 @@ describe('BookingPackageComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+
+

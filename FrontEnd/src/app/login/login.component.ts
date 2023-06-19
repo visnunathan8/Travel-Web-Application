@@ -15,13 +15,13 @@ export class LoginComponent implements OnInit {
   password = ''
   accountType = ''
   invalidLogin = false
-  customer: customeraccount;
-  travelagent: travelagentaccount;
-  type: Number
+  customer: customeraccount= new customeraccount();
+  travelagent: travelagentaccount = new travelagentaccount();
+  type: Number=-1;
   constructor(private customerService: customerAccountService, private travelAgentService: TravelagentService, private router: Router, private loginservice: AuthenticationService) { }
   ngOnInit() {
   }
-  private checkLogin() {
+  public checkLogin() {
     if(this.accountType == "admin") {
       this.travelagent = new travelagentaccount(this.username,this.password,this.accountType);
       console.log(this.travelagent)
@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
       .subscribe( (data) => {
         this.type = data
         if(this.type == 1) {
+          sessionStorage.setItem('travelagent', JSON.stringify(this.travelagent));
           this.travelAgentService.setLoggedIn(true);
           this.router.navigate(['travelagentdashboard'])
         }else{
@@ -66,7 +67,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  private signup() {
+  public signup() {
     this.router.navigate(['signup'])
   }
 

@@ -1,17 +1,19 @@
 <app-adminheader></app-adminheader>
-<div class="search-container">
-  <div class="search-label">SEARCH BOX :</div>
-  <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box">
+<div class="container">
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box" (input)="filterTravels()">
+  </div>
+  <button class="add-btn" (click)="addNewTravel()">Add Travel Package</button>
 </div>
 
-
-<table class="travel-table">
+<div class="table-container">
+  <table class="travel-table">
   <thead>
-    <tr>
+    <tr style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif"> 
       <th>Travel Package Name</th>
-      <th>FlightId</th>
-      <th>HotelId</th>
-      <th>ActivitiesId</th>
+      <th>Flight Name</th>
+      <th>Hotel Name</th>
+      <th>Activities Name</th>
       <th>Source</th>
       <th>Destination</th>
       <th>Number Of Days</th>
@@ -20,27 +22,32 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let travel of travels; let i = index">
+    <tr *ngFor="let travel of filteredTravels; let i = index" [class.selected]="travel.editable">
       <td>
         <input type="text" [(ngModel)]="travel.travelPackageName" [disabled]="!travel.editable">
       </td>
       <td>
         <select [(ngModel)]="travel.flightId" [disabled]="!travel.editable">
           <option value="" disabled>Select Flight</option>
-          <option *ngFor="let option of flightOptions" [value]="option.flightId">{{ option.flightId }}</option>
+          <option *ngFor="let option of flightOptions" [value]="option.flightId">
+            {{ option.flightId ? getFlightNameById(option.flightId) : '' }}
+          </option>
         </select>
       </td>
       <td>
         <select [(ngModel)]="travel.hotelId" [disabled]="!travel.editable">
           <option value="" disabled>Select Hotel</option>
-          <option *ngFor="let option of hotelOptions" [value]="option.hotelId">{{ option.hotelId }}</option>
+          <option *ngFor="let option of hotelOptions" [value]="option.hotelId">
+            {{ option.hotelId ? getHotelNameById(option.hotelId) : '' }}
+          </option> 
         </select>
       </td>
       <td>
         <select [(ngModel)]="travel.activitiesId" [disabled]="!travel.editable">
           <option value="" disabled>Select Activities</option>
-          <option *ngFor="let option of activitiesOptions" [value]="option.activitiesId">{{ option.activitiesId }}</option>
-        </select>
+          <option *ngFor="let option of activitiesOptions" [value]="option.activitiesId">
+            {{ option.activitiesId ? getActivityNameById(option.activitiesId) : '' }}
+          </option>        </select>
       </td>
       <td>
         <input type="text" [(ngModel)]="travel.sourceCity" [disabled]="!travel.editable">
@@ -55,16 +62,22 @@
         <input type="text" [(ngModel)]="travel.totalPrice" [disabled]="!travel.editable">
       </td>
       <td>
-        <button class="edit-btn" (click)="toggleEdit(i)">
-          {{ travel.editable ? 'Save' : 'Edit' }}
-        </button>
-        <button class="delete-btn" (click)="deleteTravel(i)">Delete</button>
+        <div style="margin-bottom: 10px;">
+          <button class="edit-btn" (click)="toggleEdit(i)">
+            {{ travel.editable ? 'Save' : 'Edit' }}
+          </button>
+        </div>
+        <div>
+          <button class="delete-btn" (click)="deleteTravel(i)">Delete</button>
+        </div>
       </td>
+      
     </tr>
   </tbody>
 </table>
+</div>
 <br>
-<div *ngIf="showAddForm">
+<!-- <div *ngIf="showAddForm">
   <table class="travel-table">
     <tbody>
       <tr>
@@ -117,6 +130,65 @@
       </tr>
     </tbody>
   </table>
-</div>
+</div> -->
 
-<button class="add-btn" (click)="addNewTravel()">Add Travel Package</button>
+
+
+<!-- Add Travel Package Popup -->
+<div *ngIf="showAddPopup" class="popup-overlay show">
+  <div class="popup-content show">
+    <h2>Add Travel Package</h2>
+    <div>
+      <label>Travel Package Name:</label>
+      <input type="text" [(ngModel)]="newTravel.travelPackageName">
+    </div>
+    <div>
+      <label>Flight:</label>
+      <select [(ngModel)]="newTravel.flightId">
+        <option value="" disabled>Select Flight</option>
+        <option *ngFor="let option of flightOptions" [value]="option.flightId">
+          {{ option.flightId ? getFlightNameById(option.flightId) : '' }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <label>Hotel:</label>
+      <select [(ngModel)]="newTravel.hotelId">
+        <option value="" disabled>Select Hotel</option>
+        <option *ngFor="let option of hotelOptions" [value]="option.hotelId">
+          {{ option.hotelId ? getHotelNameById(option.hotelId) : '' }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <label>Activities:</label>
+      <select [(ngModel)]="newTravel.activitiesId">
+        <option value="" disabled>Select Activities</option>
+        <option *ngFor="let option of activitiesOptions" [value]="option.activitiesId">
+          {{ option.activitiesId ? getActivityNameById(option.activitiesId) : '' }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <label>Source City:</label>
+      <input type="text" [(ngModel)]="newTravel.sourceCity">
+    </div>
+    <div>
+      <label>Destination City:</label>
+      <input type="text" [(ngModel)]="newTravel.destinationCity">
+    </div>
+    <div>
+      <label>Number of Days:</label>
+      <input type="text" [(ngModel)]="newTravel.noOfDays">
+    </div>
+    <div>
+      <label>Total Price:</label>
+      <input type="text" [(ngModel)]="newTravel.totalPrice">
+    </div>
+
+    <div class="popup-buttons">
+      <button class="cancel-btn" (click)="cancel()">Cancel</button>
+      <button class="save-btn" (click)="saveTravel(newTravel)">Save</button>
+    </div>
+  </div>
+</div>

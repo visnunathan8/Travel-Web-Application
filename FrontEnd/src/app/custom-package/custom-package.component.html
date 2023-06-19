@@ -1,123 +1,135 @@
 <app-customer-header></app-customer-header>
-<div class="search-container">
-  <div class="search-label">SEARCH BOX :</div>
-  <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box">
+
+<div class="container">
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchKeyword" placeholder="  Search your packages" class="search-box" (input)="applySearchFilter()">
+  </div>
+  <button class="add-btn" (click)="addNewTravel()">Customize your travel!</button>
 </div>
 
+<div style="max-height: 570px; overflow-y: scroll;">
 
-<table class="travel-table">
-  <thead>
-    <tr>
-      <th>Travel Package Name</th>
-      <th>FlightId</th>
-      <th>HotelId</th>
-      <th>ActivitiesId</th>
-      <th>Source</th>
-      <th>Destination</th>
-      <th>Number Of Days</th>
-      <th>Total Price</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let travel of travels; let i = index">
-      <td>
-        <input type="text" [(ngModel)]="travel.travelPackageName" [disabled]="!travel.editable">
-      </td>
-      <td>
-        <select [(ngModel)]="travel.flightId" [disabled]="!travel.editable">
-          <option value="" disabled>Select Flight</option>
-          <option *ngFor="let option of flightOptions" [value]="option.flightId">{{ option.flightId }}</option>
-        </select>
-      </td>
-      <td>
-        <select [(ngModel)]="travel.hotelId" [disabled]="!travel.editable">
-          <option value="" disabled>Select Hotel</option>
-          <option *ngFor="let option of hotelOptions" [value]="option.hotelId">{{ option.hotelId }}</option>
-        </select>
-      </td>
-      <td>
-        <select [(ngModel)]="travel.activitiesId" [disabled]="!travel.editable">
-          <option value="" disabled>Select Activities</option>
-          <option *ngFor="let option of activitiesOptions" [value]="option.activitiesId">{{ option.activitiesId }}</option>
-        </select>
-      </td>
-      <td>
-        <input type="text" [(ngModel)]="travel.sourceCity" [disabled]="!travel.editable">
-      </td>
-      <td>
-        <input type="text" [(ngModel)]="travel.destinationCity" [disabled]="!travel.editable">
-      </td>
-      <td>
-        <input type="text" [(ngModel)]="travel.noOfDays" [disabled]="!travel.editable">
-      </td>
-      <td>
-        <input type="text" [(ngModel)]="travel.totalPrice" [disabled]="!travel.editable">
-      </td>
-      <td>
-        <button class="edit-btn" (click)="toggleEdit(i)" *ngIf="travel.isCustomerCreated">
+  <div class="travel-cards">
+    <mat-card *ngFor="let travel of filteredTravels; let i = index" [class.selected]="travel.editable">
+      <mat-card-header>
+        <input [(ngModel)]="travel.travelPackageName" [disabled]="!travel.editable" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 24px; color: #333" class="content-input">
+      </mat-card-header>
+      <mat-card-content>
+        <div class="card-item">
+          <mat-form-field>
+            <mat-label>Flight:</mat-label>
+            <mat-select [(ngModel)]="travel.flightId" [disabled]="!travel.editable">
+              <mat-option value="" disabled>Select Flight</mat-option>
+              <mat-option *ngFor="let option of flightOptions" [value]="option.flightId">
+                {{ option.flightId ? getFlightNameById(option.flightId) : '' }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="card-item">
+          <mat-form-field>
+            <mat-label>Hotel:</mat-label>
+            <mat-select [(ngModel)]="travel.hotelId" [disabled]="!travel.editable">
+              <mat-option value="" disabled>Select Hotel</mat-option>
+              <mat-option *ngFor="let option of hotelOptions" [value]="option.hotelId">
+                {{ option.hotelId ? getHotelNameById(option.hotelId) : '' }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="card-item">
+          <mat-form-field>
+            <mat-label>Activities:</mat-label>
+            <mat-select [(ngModel)]="travel.activitiesId" [disabled]="!travel.editable">
+              <mat-option value="" disabled>Select Activities</mat-option>
+              <mat-option *ngFor="let option of activitiesOptions" [value]="option.activitiesId">
+                {{ option.activitiesId ? getActivityNameById(option.activitiesId) : '' }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="card-item">
+          <mat-form-field>
+            <mat-label>Source:</mat-label>
+            <input matInput type="text" [(ngModel)]="travel.sourceCity" [disabled]="!travel.editable">
+          </mat-form-field>
+        </div>
+        <div class="card-item">
+          <mat-form-field>
+            <mat-label>Destination:</mat-label>
+            <input matInput type="text" [(ngModel)]="travel.destinationCity" [disabled]="!travel.editable">
+          </mat-form-field>
+        </div>
+        <div class="card-item">
+          <mat-form-field>
+            <mat-label>Number of Days:</mat-label>
+            <input matInput type="text" [(ngModel)]="travel.noOfDays" [disabled]="!travel.editable">
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-actions style="margin-top: -40px;">
+        <button mat-raised-button style="margin-right: 10px;background-color:  #8E5188; color: white;" (click)="toggleEdit(i)" *ngIf="travel.isCustomerCreated">
           {{ travel.editable ? 'Save' : 'Edit' }}
         </button>
-        <button class="delete-btn" (click)="deleteTravel(i)" *ngIf="travel.isCustomerCreated">Delete</button>
-
-      </td>
-    </tr>
-  </tbody>
-</table>
-<br>
-<div *ngIf="showAddForm">
-  <table class="travel-table">
-    <tbody>
-      <tr>
-        <td>
-          <input type="text" [(ngModel)]="newTravel.travelPackageName">
-        </td>
-        <td>
-          <select [(ngModel)]="newTravel.flightId">
-            <option value="" disabled>Select Flight</option>
-            <option *ngFor="let option of flightOptions" [value]="option.flightId">
-              {{ option.flightId }}
-            </option>
-          </select>
-        </td>
-        <td>
-          <select [(ngModel)]="newTravel.hotelId">
-            <option value="" disabled>Select Hotel</option>
-            <option *ngFor="let option of hotelOptions" [value]="option.hotelId">
-              {{ option.hotelId }}
-            </option>
-          </select>
-        </td>
-        <td>
-          <select [(ngModel)]="newTravel.activitiesId">
-            <option value="" disabled>Select Activities</option>
-            <option *ngFor="let option of activitiesOptions" [value]="option.activitiesId">
-              {{ option.activitiesId }}
-            </option>
-          </select>
-        </td>
-        <td>
-          <input type="text" [(ngModel)]="newTravel.sourceCity">
-        </td>
-        <td>
-          <input type="text" [(ngModel)]="newTravel.destinationCity">
-        </td>
-        <td>
-          <input type="text" [(ngModel)]="newTravel.noOfDays">
-        </td>
-        <td>
-          <input type="text" [(ngModel)]="newTravel.totalPrice">
-        </td>
-        <td>
-          <button class="edit-btn" (click)="saveTravel(newTravel)">
-            Save
-          </button>
-
-          <button class="delete-btn" (click)="deleteNewTravel()">Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        <button mat-raised-button color="warn" (click)="deleteTravel(i)" *ngIf="travel.isCustomerCreated">Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  
 </div>
+<br>
 
-<button class="add-btn" (click)="addNewTravel()">Add Travel Package</button>
+<!-- Add Travel Package Popup -->
+<div *ngIf="showAddPopup" class="popup-overlay show">
+  <div class="popup-content show">
+    <p class="title_center" style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-size: 24px; color: rgb(0, 0, 0);">Create Travel Package</p>
+    <div>
+      <label>Travel Package Name:</label>
+      <input type="text" [(ngModel)]="newTravel.travelPackageName">
+    </div>
+    <div>
+      <label>Flight:</label>
+      <select [(ngModel)]="newTravel.flightId">
+        <option value="" disabled>Select Flight</option>
+        <option *ngFor="let option of flightOptions" [value]="option.flightId">
+          {{ option.flightId ? getFlightNameById(option.flightId) : '' }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <label>Hotel:</label>
+      <select [(ngModel)]="newTravel.hotelId">
+        <option value="" disabled>Select Hotel</option>
+        <option *ngFor="let option of hotelOptions" [value]="option.hotelId">
+          {{ option.hotelId ? getHotelNameById(option.hotelId) : '' }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <label>Activities:</label>
+      <select [(ngModel)]="newTravel.activitiesId">
+        <option value="" disabled>Select Activities</option>
+        <option *ngFor="let option of activitiesOptions" [value]="option.activitiesId">
+          {{ option.activitiesId ? getActivityNameById(option.activitiesId) : '' }}
+        </option>
+      </select>
+    </div>
+    <div>
+      <label>Source City:</label>
+      <input type="text" [(ngModel)]="newTravel.sourceCity">
+    </div>
+    <div>
+      <label>Destination City:</label>
+      <input type="text" [(ngModel)]="newTravel.destinationCity">
+    </div>
+    <div>
+      <label>Number of Days:</label>
+      <input type="text" [(ngModel)]="newTravel.noOfDays">
+    </div>
+
+    <div class="popup-buttons">
+      <button class="cancel-btn" (click)="cancel()">Cancel</button>
+      <button class="save-btn" (click)="saveTravel(newTravel)">Save</button>
+    </div>
+  </div>
+</div>

@@ -1,22 +1,26 @@
 <app-adminheader></app-adminheader>
 
-<div class="search-container">
-  <div class="search-label">SEARCH BOX :</div>
-  <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box">
+<div class="container ">
+  <div class="search-container">
+    <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box" (input)="applyFilter()">
+  </div>
+  
+  <button class="add-btn" (click)="addNewHotel()">Add Hotel</button>
 </div>
+<div style="max-height: 575px; overflow-y: scroll;">
 
 <table class="hotel-table">
   <thead>
-    <tr>
+    <tr style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
       <th>Hotel Name</th>
       <th>Location</th>
       <th>Price per Night</th>
       <th>Amenities</th>
-      <th>Action</th>
+      <th>Action</th> 
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let hotel of filteredHotels; let i = index">
+    <tr *ngFor="let hotel of filteredHotels; let i = index" [class.selected]="hotel.editable">
       <td>
         <input type="text" [(ngModel)]="hotel.hotelName" [disabled]="!hotel.editable">
       </td>
@@ -30,16 +34,21 @@
         <input type="text" [(ngModel)]="hotel.amenities" [disabled]="!hotel.editable">
       </td>
       <td>
-        <button class="edit-btn" (click)="toggleEdit(i)">
-          {{ hotel.editable ? 'Save' : 'Edit' }}
-        </button>
-        <button class="delete-btn" (click)="deleteHotel(i)">Delete</button>
+        <div style="margin-bottom: 10px;">
+          <button class="edit-btn" (click)="toggleEdit(i)">
+            {{ hotel.editable ? 'Save' : 'Edit' }}
+          </button>
+        </div>
+        <div>
+          <button class="delete-btn" (click)="deleteHotel(i)">Delete</button>
+        </div>
       </td>
     </tr>
   </tbody>
 </table>
+</div>
 <br>
-<div *ngIf="showAddForm">
+<!-- <div *ngIf="showAddForm">
   <table class="hotel-table">
     <tbody>
       <tr>
@@ -64,6 +73,36 @@
       </tr>
     </tbody>
   </table>
+</div> -->
+
+
+
+<div *ngIf="showAddPopup" class="popup-overlay show">
+  <div class="popup-content show">
+    <h2>Add Hotel</h2>
+    <div>
+      <label>Hotel Name:</label>
+      <input type="text" [(ngModel)]="newHotel.hotelName">
+    </div>
+    <div>
+      <label>Location:</label>
+      <input type="text" [(ngModel)]="newHotel.location">
+    </div>
+    <div>
+      <label>Price Per Night:</label>
+      <input type="number" [(ngModel)]="newHotel.pricePerNight">
+    </div>
+    <div>
+      <label>Amenities:</label>
+      <input type="text" [(ngModel)]="newHotel.amenities">
+    </div>
+
+    <div class="popup-buttons">
+      <button class="cancel-btn" (click)="cancel()">Cancel</button>
+      <button class="save-btn" (click)="saveHotel(newHotel)">Save</button>
+    </div>
+  </div>
 </div>
 
-<button class="add-btn" (click)="addNewHotel()">Add Hotel</button>
+
+ 

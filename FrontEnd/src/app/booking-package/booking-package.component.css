@@ -1,53 +1,16 @@
 
-/* app.component.css */
-.travel-table {
-  width: 100%;
-  border-collapse: collapse;
-}
+/* Table styles */
 
-.travel-table th,
-.travel-table td {
-  padding: 10px;
-  text-align: left;
+.blue {
+  color: #8E5188;
 }
-
-.travel-table th {
-  background-color: #f2f2f2;
-  font-weight: bold;
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 20px;
+  margin-right: 100px;
 }
-
-.add-btn {
-  background-color: #081ddd;
-  color: white;
-  margin-right: 5px;
-}
-
-.add-btn,
-.edit-btn,
-.delete-btn {
-  padding: 5px 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.edit-btn {
-  background-color: #4CAF50;
-  color: white;
-  margin-right: 5px;
-}
-
-.delete-btn {
-  background-color: #f44336;
-  color: white;
-}
-
-.edit-btn:hover,
-.delete-btn:hover {
-  opacity: 0.8;
-}
-
-/* Add more styling and effects as per your preference */
 
 .search-container {
   margin: 20px;
@@ -56,43 +19,287 @@
   justify-content: center;
   gap: 10px;
 }
-
-.search-label {
-  font-size: 18px;
-  color: rgb(216, 0, 0);
+.search-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 20px;
+  pointer-events: none;
 }
 
 .search-box {
+  padding: 10px 40px;
+  width: 250px;
   border: none;
-  border-radius: 20px;
-  padding: 10px 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  background-color: #dbe1da;
   font-size: 16px;
+  color: #333;
+  transition: background-color 0.3s ease-in-out;
 }
 
-.search-button {
-  background-color: #007bff;
+.search-box:focus {
+  outline: none;
+  background-color: #d5d5d5;
+  box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.1);
+}
+
+/* Optional: Add hover effect */
+.search-box:hover {
+  background-color: #e6e6e6;
+}
+
+.add-btn {
+  padding: 10px 20px;
+  font-size: 16px;
   border: none;
-  border-radius: 20px;
+  border-radius: 4px;
+  background-color: #B3798F;
   color: #fff;
-  padding: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-.search-button:hover {
-  background-color: #0056b3;
+.add-btn:hover {
+  background-color: #8E5188;
 }
 
-.search-button i {
-  font-size: 18px;
+.add-btn:active {
+  background-color: #735ead;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-.search-box::placeholder {
-  color: rgb(0, 0, 0);
+
+
+
+
+
+/* Popup Overlay */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
 }
 
-.disabled {
-  opacity: 0.5; /* Reduce the opacity to visually indicate the button is disabled */
-  cursor: not-allowed; /* Change the cursor to indicate that the button is not clickable */
+.popup-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
 }
+
+/* Popup Content */
+.popup-content {
+  background-color: #fff;
+  padding: 30px;
+  max-width: 500px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+  position: relative;
+}
+
+.popup-content.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.popup-content h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.popup-content label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;
+  color: #555;
+}
+
+.popup-content select {
+  width: 104%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.popup-content input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.popup-content input:focus,
+.popup-content select:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 5px rgba(76, 175, 80, 0.6);
+}
+
+.popup-content .popup-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.popup-content button {
+  padding: 12px 30px;
+  border-radius: 3px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  width: 150px;
+}
+
+.popup-content button.cancel-btn {
+  background-color: #bbb;
+  color: #333;
+  margin-right: 10px;
+}
+
+.popup-content button.cancel-btn:hover {
+  background-color: #999;
+}
+
+.popup-content button.save-btn {
+  background-color: #4CAF50;
+  color: #fff;
+} 
+
+.popup-content button.save-btn:hover {
+  background-color: #45A049;
+}
+
+.popup-content::before {
+  content: "";
+  background-image: url('https://images.unsplash.com/photo-1500835556837-99ac94a94552?ixlib=rb-4.0.3&ixi');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+
+.card {
+  width: 300px;
+  padding: 16px;
+  margin: 16px;
+}
+
+.card-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.card-label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+
+.card-value {
+  flex-grow: 1;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.popup-content h2 {
+  margin-bottom: 10px;
+}
+
+.popup-content label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.popup-content input,
+.popup-content select {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+
+.popup-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.popup-buttons button {
+  margin-left: 5px;
+}
+
+.with-background {
+  background-image: url('https://images.pexels.com/photos/17179243/pexels-photo-17179243/free-photo-of-white-little-church-on-top-of-the-hill-de-terp-leidsenveen-the-hague-the-netherlands.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+  background-color: #EAE0E9;
+  background-size: cover;
+  background-position: center;
+  min-width: 800px;
+  max-width: 800px;
+  height: 100%;
+}
+
+.card-text{
+  font-family: Verdana, Geneva, Tahoma, sans-serif, bold;
+}
+
+
