@@ -7,3 +7,4 @@ export interface customeraccount{
     email: string,
     dob: string
 }
+
