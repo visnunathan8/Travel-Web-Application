@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BookingPackageComponent } from './booking-package.component';
+import { ReportsComponent } from './reports.component';
 
-describe('BookingPackageComponent', () => {
-  let component: BookingPackageComponent;
-  let fixture: ComponentFixture<BookingPackageComponent>;
+describe('ReportsComponent', () => {
+  let component: ReportsComponent;
+  let fixture: ComponentFixture<ReportsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BookingPackageComponent ]
+      declarations: [ ReportsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BookingPackageComponent);
+    fixture = TestBed.createComponent(ReportsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -23,5 +23,3 @@ describe('BookingPackageComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-
-

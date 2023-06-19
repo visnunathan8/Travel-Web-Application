@@ -1,0 +1,42 @@
+<app-main-admin-header></app-main-admin-header>
+
+<!-- <div class="report-container">
+  <h3>Bookings by Customer</h3>
+  <div id="bookingsByCustomerId" class="report-items"></div>
+</div> -->
+
+<!-- <div class="report-container">
+  <h3>Bookings by Destination</h3>
+  <div id="bookingsByDestination" class="report-items"></div>
+</div> -->
+
+<div class="report-container">
+  <div id="bookingsByCustomerId" class="chart-container"></div>
+  <div class="chart-options">
+    <mat-button-toggle-group [value]="chartType" (change)="toggleChartType($event)">
+      <mat-button-toggle value="column">Column</mat-button-toggle>
+      <mat-button-toggle value="bar">Bar</mat-button-toggle>
+      <mat-button-toggle value="pie">Pie</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <mat-slide-toggle [(ngModel)]="animationEnabled" (change)="toggleAnimation($event)">
+      Animation
+    </mat-slide-toggle>
+
+  </div>
+</div>
+<!-- <div class="report-container1">
+  <div id="bookingsByDestination" class="chart-container1"></div>
+  <div class="chart-options1">
+    <mat-button-toggle-group [value]="chartType1" (change)="toggleChartType1($event)">
+      <mat-button-toggle value="column">Column</mat-button-toggle>
+      <mat-button-toggle value="bar">Bar</mat-button-toggle>
+      <mat-button-toggle value="pie">Pie</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <mat-slide-toggle [(ngModel)]="animationEnabled1" (change)="toggleAnimation1($event)">
+      Animation
+    </mat-slide-toggle>
+
+  </div>
+</div> -->

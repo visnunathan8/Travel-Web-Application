@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BookingPackageComponent } from './booking-package.component';
+import { CustomPackageComponent } from './custom-package.component';
 
-describe('BookingPackageComponent', () => {
-  let component: BookingPackageComponent;
-  let fixture: ComponentFixture<BookingPackageComponent>;
+describe('CustomPackageComponent', () => {
+  let component: CustomPackageComponent;
+  let fixture: ComponentFixture<CustomPackageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BookingPackageComponent ]
+      declarations: [ CustomPackageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BookingPackageComponent);
+    fixture = TestBed.createComponent(CustomPackageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -23,5 +23,3 @@ describe('BookingPackageComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-
-
