@@ -1,7 +1,7 @@
 <app-customer-header></app-customer-header>
 <div class="search-container">
   <div class="search-label">SEARCH BOX :</div>
-  <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box">
+  <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box" (input)="applySearchFilter()">
 </div>
 
 
@@ -20,7 +20,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let travel of travels; let i = index">
+    <tr *ngFor="let travel of filteredTravels; let i = index">
       <td>
         <input type="text" [(ngModel)]="travel.travelPackageName" [disabled]="!travel.editable">
       </td>
