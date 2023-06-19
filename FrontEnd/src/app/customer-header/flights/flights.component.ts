@@ -45,7 +45,6 @@ export class FlightsComponent implements OnInit {
           this.filteredFlights.push(response);
           this.cancel();
         }, 
-
         (error) => {
           console.log('Error occurred while saving flight:', error);
         }

@@ -23,7 +23,6 @@ export class ReportsComponent implements OnInit {
   chartType1: string = 'column';
   animationEnabled1: boolean = true;
 
-
   constructor(
     private bookingservice: BookingPackageService,
     private travelpackageService: TravelpackageService,
@@ -51,7 +50,7 @@ export class ReportsComponent implements OnInit {
       // Handle the case when the customer value is null
     }
   }
-
+  
 
   getBookingList() {
     this.bookingservice.getBookingPackageList().subscribe(
@@ -79,7 +78,6 @@ export class ReportsComponent implements OnInit {
     this.renderBookingsByDestination();
     // // Add more report rendering functions as needed
     // this.renderAdditionalChart(); // Call your custom chart rendering function
-
   }
 
   renderBookingsByCustomerId() {
@@ -110,7 +108,6 @@ export class ReportsComponent implements OnInit {
     };
     const chart = new CanvasJS.Chart('bookingsByCustomerId', options);
     chart.render();
-
   }
 
   renderBookingsByDestination() {

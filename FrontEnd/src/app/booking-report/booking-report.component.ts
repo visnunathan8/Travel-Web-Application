@@ -10,11 +10,11 @@ import { MatSelectChange } from '@angular/material/select';
 import { CanvasJS } from 'src/assets/canvasjs.angular.component';
 
 @Component({
-  selector: 'app-reports',
-  templateUrl: './reports.component.html',
-  styleUrls: ['./reports.component.css']
+  selector: 'app-booking-report',
+  templateUrl: './booking-report.component.html',
+  styleUrls: ['./booking-report.component.css']
 })
-export class ReportsComponent implements OnInit {
+export class BookingReportComponent implements OnInit {
   bookings: BookingPackage[] = [];
   travelList: Travel[] = [];
   customerAccounts: customeraccount[] = [];
@@ -22,7 +22,6 @@ export class ReportsComponent implements OnInit {
   animationEnabled: boolean = true;
   chartType1: string = 'column';
   animationEnabled1: boolean = true;
-
 
   constructor(
     private bookingservice: BookingPackageService,
@@ -51,7 +50,7 @@ export class ReportsComponent implements OnInit {
       // Handle the case when the customer value is null
     }
   }
-
+  
 
   getBookingList() {
     this.bookingservice.getBookingPackageList().subscribe(
@@ -75,43 +74,41 @@ export class ReportsComponent implements OnInit {
   }
 
   renderReports() {
-    this.renderBookingsByCustomerId();
+    // this.renderBookingsByCustomerId();
     this.renderBookingsByDestination();
     // // Add more report rendering functions as needed
     // this.renderAdditionalChart(); // Call your custom chart rendering function
-
   }
 
-  renderBookingsByCustomerId() {
-    const reportContainer = document.getElementById('bookingsByCustomerId');
-    reportContainer!.innerHTML = ''; // Clear existing content
+  // renderBookingsByCustomerId() {
+  //   const reportContainer = document.getElementById('bookingsByCustomerId');
+  //   reportContainer!.innerHTML = ''; // Clear existing content
 
-    const bookingsByCustomerId = this.groupBookingsByCustomerId();
-    const chartData = [];
+  //   const bookingsByCustomerId = this.groupBookingsByCustomerId();
+  //   const chartData = [];
 
-    for (const customerId in bookingsByCustomerId) {
-      if (bookingsByCustomerId.hasOwnProperty(customerId)) {
-        const customerName = this.getCustomerNameById(Number(customerId));
-        const bookingCount = bookingsByCustomerId[customerId];
+  //   for (const customerId in bookingsByCustomerId) {
+  //     if (bookingsByCustomerId.hasOwnProperty(customerId)) {
+  //       const customerName = this.getCustomerNameById(Number(customerId));
+  //       const bookingCount = bookingsByCustomerId[customerId];
 
-        chartData.push({ label: customerName, y: bookingCount });
+  //       chartData.push({ label: customerName, y: bookingCount });
 
-      }
-    }
-   const options = {
-      animationEnabled: this.animationEnabled,
-      title: {
-        text: 'Customer Bookings Chart'
-      },
-      data: [{
-        type: this.chartType,
-        dataPoints: chartData
-      }]
-    };
-    const chart = new CanvasJS.Chart('bookingsByCustomerId', options);
-    chart.render();
-
-  }
+  //     }
+  //   }
+  //  const options = {
+  //     animationEnabled: this.animationEnabled,
+  //     title: {
+  //       text: 'Customer Bookings Chart'
+  //     },
+  //     data: [{
+  //       type: this.chartType,
+  //       dataPoints: chartData
+  //     }]
+  //   };
+  //   const chart = new CanvasJS.Chart('bookingsByCustomerId', options);
+  //   chart.render();
+  // }
 
   renderBookingsByDestination() {
     const reportContainer = document.getElementById('bookingsByDestination');
@@ -222,12 +219,12 @@ export class ReportsComponent implements OnInit {
 
   toggleChartType(event: MatButtonToggleChange) {
     this.chartType = event.value;
-    this.renderBookingsByCustomerId();
+    // this.renderBookingsByCustomerId();
   }
 
   toggleAnimation(event: MatSlideToggleChange) {
     this.animationEnabled = event.checked;
-    this.renderBookingsByCustomerId();
+    // this.renderBookingsByCustomerId();
   }
   toggleChartType1(event: MatButtonToggleChange) {
     this.chartType1 = event.value;
