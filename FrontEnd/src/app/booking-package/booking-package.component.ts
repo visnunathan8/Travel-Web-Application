@@ -15,6 +15,8 @@ export class BookingPackageComponent implements OnInit {
   customer: customeraccount;
   newcustomer: customeraccount = new customeraccount();
   departureDate: string;
+  previousSearchKeyword: string;
+  handler: any;
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -24,21 +26,144 @@ export class BookingPackageComponent implements OnInit {
   ngOnInit() {
     this.customer = history.state.customer;
     this.getBookingList();
+    this.loadStripe();
+  }
+
+  pay(amount: any, index: number) {
+    var handler = (<any>window).StripeCheckout.configure({
+      key: 'pk_test_51NIuIOCi5FZYbK5YmcbB343AMigr0gQlZo0aHEL6t0n5yqeiBrJsYwwZxqclQzFlTSVzH9uZQWrCZsG5Y0fJWG0e001tj1VzPw',
+      locale: 'auto',
+      token: (token: any) => {
+        console.log(token);
+        this.book(index);
+        this.travels[index].editable = !this.travels[index].editable;
+        this.cdr.detectChanges(); // Trigger change detection
+      },
+      style: {
+        base: {
+          fontSize: '16px',
+          color: '#fff',
+          '::placeholder': {
+            color: '#aab7c4',
+          },
+          ':focus': {
+            color: '#fff',
+          },
+        },
+        invalid: {
+          color: '#ff5454',
+        },
+      },
+    });
+
+    handler.open({
+      name: 'Innovators Payment Page',
+      description: '2 widgets',
+      amount: amount * 100,
+      // Additional options for customization
+      image: 'https://images.unsplash.com/photo-1500835556837-99ac94a94552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dHJhdmVsfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60',
+      currency: 'USD',
+      panelLabel: 'Pay Now',
+      billingAddress: true,
+      shippingAddress: false,
+      allowRememberMe: true,
+      // Custom styling for the modal
+      style: {
+        base: {
+          fontFamily: 'Arial, sans-serif',
+          fontSize: '16px',
+          color: '#fff',
+          '::placeholder': {
+            color: '#aab7c4',
+          },
+          ':focus': {
+            color: '#fff',
+          },
+          backgroundColor: '#3366ff',
+          borderRadius: '8px',
+          padding: '20px',
+          boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+          animation: 'fade-in 0.5s ease-in-out',
+          width: '900px', // Increase the width as desired
+          height: '800px', // Increase the height as desired
+        },
+        invalid: {
+          color: '#ff5454',
+        },
+      },
+    });
+  }
+
+
+
+  loadStripe() {
+
+    if(!window.document.getElementById('stripe-script')) {
+      var s = window.document.createElement("script");
+      s.id = "stripe-script";
+      s.type = "text/javascript";
+      s.src = "https://checkout.stripe.com/checkout.js";
+      s.onload = () => {
+        this.handler = (<any>window).StripeCheckout.configure({
+          key: 'pk_test_51NIuIOCi5FZYbK5YmcbB343AMigr0gQlZo0aHEL6t0n5yqeiBrJsYwwZxqclQzFlTSVzH9uZQWrCZsG5Y0fJWG0e001tj1VzPw',
+          locale: 'auto',
+          token: function (token: any) {
+            // You can access the token ID with `token.id`.
+            // Get the token ID to your server-side code for use.
+            console.log(token)
+            alert('Payment Success!!');
+          }
+        });
+      }
+
+      window.document.body.appendChild(s);
+    }
   }
 
   toggleEdit(index: number) {
     console.log("ASDF")
     if (!this.travels[index].editable) {
-      this.book(index);
-      this.travels[index].editable = !this.travels[index].editable;
-      this.cdr.detectChanges(); // Trigger change detection
+      this.pay(this.travels[index].totalPrice, index);
     }
   }
+
+
+  filterTravels() {
+    if (this.searchKeyword === this.previousSearchKeyword) {
+      // No change in the search keyword, do nothing
+      return;
+    }
+
+    this.previousSearchKeyword = this.searchKeyword;
+
+    if (!this.searchKeyword) {
+      // If the search keyword is empty, show all travels
+      this.getTravelList();
+    } else {
+      // Filter travels based on the search keyword
+      this.travels = this.travels.filter((travel) => {
+        const searchKeyword = this.searchKeyword.toString().toLowerCase(); // Convert the search keyword to lowercase string
+
+        return (
+          travel.travelPackageName.toLowerCase().includes(searchKeyword) ||
+          travel.flightId.toString().includes(searchKeyword) ||
+          travel.hotelId.toString().includes(searchKeyword) ||
+          travel.activitiesId.toString().includes(searchKeyword) ||
+          travel.sourceCity.toLowerCase().includes(searchKeyword) ||
+          travel.destinationCity.toLowerCase().includes(searchKeyword)
+        );
+      });
+    }
+  }
+
+
 
   book(index: number) {
     const travel = this.travels[index];
     var bookingPackage: BookingPackage;
-    const customerState = this.customerservice.getCustomerState();
+    // const customerState = this.customerservice.getCustomerState();
+    const customerState = JSON.parse(sessionStorage.getItem('customer'));
+
     this.customerservice.getCustomerAccount(customerState.username).subscribe(
       (result: customeraccount) => {
         this.newcustomer = result;
@@ -53,6 +178,8 @@ export class BookingPackageComponent implements OnInit {
           (response) => {
             console.log('Booking updated successfully');
             this.bookings.push(response);
+            this.cdr.detectChanges(); // Trigger change detection
+            this.filterTravels();
           },
           (error) => {
             console.log('Error occurred while updating travel:', error);
@@ -108,28 +235,44 @@ export class BookingPackageComponent implements OnInit {
   // }
 
   getTravelList() {
-    this.travelService.getTravelList().subscribe(
-      (travels: Travel[]) => {
-        console.log(travels);
-        this.travels = travels.map((travel) => ({
-          ...travel,
-          editable: !this.hasBookingForTravelPackage(travel.travelPackageId),
-          departureDate: this.departureDateupdate(travel.travelPackageId)
-        }));
-      },
-      (error) => {
-        console.log('Error occurred while retrieving travel list:', error);
+    // const customerState = this.customerservice.getCustomerState();
+    const customerState = JSON.parse(sessionStorage.getItem('customer'));
+
+    this.customerservice.getCustomerAccount(customerState.username).subscribe(
+      (result: customeraccount) => {
+        this.newcustomer = result;
+        this.travelService.getTravelListByCustomerID(Number(this.newcustomer.customerId)).subscribe(
+          (travels: Travel[]) => {
+            console.log(travels);
+            this.travels = travels.map((travel) => ({
+              ...travel,
+              editable: !this.hasBookingForTravelPackage(travel.travelPackageId, Number(this.newcustomer.customerId)),
+              departureDate: this.departureDateupdate(travel.travelPackageId, Number(this.newcustomer.customerId))
+            }));
+
+            // Apply filtering
+            this.filterTravels();
+          },
+          (error) => {
+            console.log('Error occurred while retrieving travel list:', error);
+          }
+        );
       }
-    );
+    )
+
+
+
+
   }
+
 
   // hasBookingForTravelPackage(travelPackageId: string): boolean {
   //   return this.bookings.some((booking) => Number(booking.travelPackageId) === Number(travelPackageId));
   // }
-  departureDateupdate(travelPackageId: string): string {
+  departureDateupdate(travelPackageId: string, customerId: Number): string {
     // Iterate through the bookings and check if any booking has the same packageId
     for (const booking of this.bookings) {
-      if (booking.travelPackageId === Number(travelPackageId)) {
+      if ((booking.customerId === customerId) && booking.travelPackageId === Number(travelPackageId)) {
         return booking.departureDate; // Booking found for the travel package
       }
     }
@@ -140,10 +283,10 @@ export class BookingPackageComponent implements OnInit {
   // hasBookingForTravelPackage(travelPackageId: string): boolean {
   //   return this.bookings.some((booking) => Number(booking.travelPackageId) === Number(travelPackageId));
   // }
-  hasBookingForTravelPackage(travelPackageId: string): boolean {
+  hasBookingForTravelPackage(travelPackageId: string, customerId: Number): boolean {
     // Iterate through the bookings and check if any booking has the same packageId
     for (const booking of this.bookings) {
-      if (booking.travelPackageId === Number(travelPackageId)) {
+      if ((booking.customerId === customerId) && booking.travelPackageId === Number(travelPackageId)) {
         return false; // Booking found for the travel package
       }
     }

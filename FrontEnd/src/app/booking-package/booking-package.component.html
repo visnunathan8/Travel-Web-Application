@@ -2,7 +2,7 @@
 
 <div class="search-container">
   <div class="search-label">SEARCH BOX :</div>
-  <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box">
+  <input type="text" [(ngModel)]="searchKeyword" placeholder="Search" class="search-box" (input)="onSearchInputChange()">
 </div>
 
 
