@@ -27,6 +27,14 @@ Our system's primary goal is to provide customers with a refined and personalize
   <img src="https://github.com/visnunathan8/COEN6311AA_INNOVATORS/assets/133191668/0d9697d9-aee3-4b09-89eb-64542a704074">
 </p>
 
+ <p align="center">
+  <img src="https://github.com/visnunathan8/COEN6311AA_INNOVATORS/assets/133191668/00310cb2-d6c2-4930-a90b-4962c40176c8">
+</p>
+
+ <p align="center">
+  <img src="https://github.com/visnunathan8/COEN6311AA_INNOVATORS/assets/133191668/ec8a698b-96c7-4c53-81da-d7e5d83bda4d">
+</p>
+
 * Travel Agent View :-
 
   * Home Page
@@ -38,6 +46,9 @@ Our system's primary goal is to provide customers with a refined and personalize
   * Notification Center
 <p align="center">
   <img src="https://github.com/visnunathan8/COEN6311AA_INNOVATORS/assets/133191668/21de05b6-802b-4c6a-9255-9756cc2e0ec1">
+</p>
+<p align="center">
+  <img src="https://github.com/visnunathan8/COEN6311AA_INNOVATORS/assets/133191668/4bb794ed-20b7-408d-8190-4bf0642f1567">
 </p>
 
 * Admin View :-
@@ -51,6 +62,10 @@ Our system's primary goal is to provide customers with a refined and personalize
   <img src="https://github.com/visnunathan8/COEN6311AA_INNOVATORS/assets/133191668/7e2d1c8e-b80a-48cb-97c5-d9c1de2ad347">
 </p>
 
+<p align="center">
+  <img src="https://github.com/visnunathan8/COEN6311AA_INNOVATORS/assets/133191668/cb2511ca-c4b7-48fe-95d5-6b3d05654cd3">
+</p>
+
 # Technologies Used:
 * Our backend deployment -> https://www.heroku.com/ using Spring Boot
 * For our database ->  clearDB using MySQL
@@ -61,4 +76,5 @@ Our system's primary goal is to provide customers with a refined and personalize
 * HTML
 * CSS
 * TypeScript
+
 
