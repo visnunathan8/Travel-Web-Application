@@ -12,133 +12,150 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 
 @Entity(name = "TravelPackage")
-
 public class TravelPackage {
 
-	@Id
-	@Column(name = "travelPackageId")
+    // Represents the unique identifier for the travel package
+    @Id
+    @Column(name = "travelPackageId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int travelPackageId;
+    private int travelPackageId;
 
-	@Column(name = "travelPackageName")
-	@NotEmpty(message = "*Please provide the travel package name")
-	private String travelPackageName;
+    // Represents the name of the travel package
+    @Column(name = "travelPackageName")
+    @NotEmpty(message = "*Please provide the travel package name")
+    private String travelPackageName;
 
-	@Column(name = "sourceCity")
-	@NotEmpty(message = "*Please provide the source city")
-	private String sourceCity;
+    // Represents the source city of the travel package
+    @Column(name = "sourceCity")
+    @NotEmpty(message = "*Please provide the source city")
+    private String sourceCity;
 
-	@Column(name = "destinationCity")
-	@NotEmpty(message = "*Please provide the destination city")
-	private String destinationCity;
+    // Represents the destination city of the travel package
+    @Column(name = "destinationCity")
+    @NotEmpty(message = "*Please provide the destination city")
+    private String destinationCity;
 
-	@Column(name = "noOfDays")
-	private int noOfDays;
+    // Represents the number of days in the travel package
+    @Column(name = "noOfDays")
+    private int noOfDays;
 
-	@Column(name = "totalPrice")
-	private double totalPrice;
+    // Represents the total price of the travel package
+    @Column(name = "totalPrice")
+    private double totalPrice;
 
+    // Represents the ID of the associated hotel
     @Column(name = "hotelId")
     private int hotelId;
 
+    // Represents the ID of the associated flight
     @Column(name = "flightId")
     private int flightId;
 
+    // Represents the ID of the associated activities
     @Column(name = "activitiesId")
     private int activitiesId;
-    
-    @Column(name = "isCustomerCreated")
-    private boolean isCustomerCreated;
-    
-    @Column(name = "customerId")
-    private int customerId;
-    
-	public int getTravelPackageId() {
-		return travelPackageId;
-	}
 
-	public void setTravelPackageId(int travelPackageId) {
-		this.travelPackageId = travelPackageId;
-	}
+    // Represents the departure date of the travel package
+    @Column(name = "departureDate")
+    private String departureDate;
 
-	public String getTravelPackageName() {
-		return travelPackageName;
-	}
+    // Getter for the travel package ID
+    public int getTravelPackageId() {
+        return travelPackageId;
+    }
 
-	public void setTravelPackageName(String travelPackageName) {
-		this.travelPackageName = travelPackageName;
-	}
+    // Setter for the travel package ID
+    public void setTravelPackageId(int travelPackageId) {
+        this.travelPackageId = travelPackageId;
+    }
 
-	public String getSourceCity() {
-		return sourceCity;
-	}
+    // Getter for the travel package name
+    public String getTravelPackageName() {
+        return travelPackageName;
+    }
 
-	public void setSourceCity(String sourceCity) {
-		this.sourceCity = sourceCity;
-	}
+    // Setter for the travel package name
+    public void setTravelPackageName(String travelPackageName) {
+        this.travelPackageName = travelPackageName;
+    }
 
-	public String getDestinationCity() {
-		return destinationCity;
-	}
+    // Getter for the source city
+    public String getSourceCity() {
+        return sourceCity;
+    }
 
-	public void setDestinationCity(String destinationCity) {
-		this.destinationCity = destinationCity;
-	}
+    // Setter for the source city
+    public void setSourceCity(String sourceCity) {
+        this.sourceCity = sourceCity;
+    }
 
-	public int getNoOfDays() {
-		return noOfDays;
-	}
+    // Getter for the destination city
+    public String getDestinationCity() {
+        return destinationCity;
+    }
 
-	public void setNoOfDays(int noOfDays) {
-		this.noOfDays = noOfDays;
-	}
+    // Setter for the destination city
+    public void setDestinationCity(String destinationCity) {
+        this.destinationCity = destinationCity;
+    }
 
-	public double getTotalPrice() {
-		return totalPrice;
-	}
+    // Getter for the number of days
+    public int getNoOfDays() {
+        return noOfDays;
+    }
 
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
-	}
+    // Setter for the number of days
+    public void setNoOfDays(int noOfDays) {
+        this.noOfDays = noOfDays;
+    }
 
-	public int getHotelId() {
-		return hotelId;
-	}
+    // Getter for the total price
+    public double getTotalPrice() {
+        return totalPrice;
+    }
 
-	public void setHotelId(int hotelId) {
-		this.hotelId = hotelId;
-	}
+    // Setter for the total price
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
-	public int getFlightId() {
-		return flightId;
-	}
+    // Getter for the hotel ID
+    public int getHotelId() {
+        return hotelId;
+    }
 
-	public void setFlightId(int flightId) {
-		this.flightId = flightId;
-	}
+    // Setter for the hotel ID
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
+    }
 
-	public int getActivitiesId() {
-		return activitiesId;
-	}
+    // Getter for the flight ID
+    public int getFlightId() {
+        return flightId;
+    }
 
-	public void setActivitiesId(int activitiesId) {
-		this.activitiesId = activitiesId;
-	}
+    // Setter for the flight ID
+    public void setFlightId(int flightId) {
+        this.flightId = flightId;
+    }
 
-	public boolean getIsCustomerCreated() {
-		return isCustomerCreated;
-	}
+    // Getter for the activities ID
+    public int getActivitiesId() {
+        return activitiesId;
+    }
 
-	public void setIsCustomerCreated(boolean isCustomerCreated) {
-		this.isCustomerCreated = isCustomerCreated;
-	}
+    // Setter for the activities ID
+    public void setActivitiesId(int activitiesId) {
+        this.activitiesId = activitiesId;
+    }
 
-	public int getCustomerId() {
-		return customerId;
-	}
+    // Getter for the departure date
+    public String getDepartureDate() {
+        return departureDate;
+    }
 
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}	
-
+    // Setter for the departure date
+    public void setDepartureDate(String departureDate) {
+        this.departureDate = departureDate;
+    }
 }

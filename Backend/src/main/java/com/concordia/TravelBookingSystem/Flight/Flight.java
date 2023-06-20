@@ -9,62 +9,77 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity(name = "Flight")
 public class Flight {
-	@Id
-	@Column(name = "flightId")
+    
+    // Represents the unique identifier for the flight
+    @Id
+    @Column(name = "flightId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	int flightId;
+    int flightId;
 
-	@Column(name = "airline")
-	@NotEmpty(message = "*Please provide the AIRLINE")
-	private String airline;
+    // Represents the airline name
+    @Column(name = "airline")
+    @NotEmpty(message = "*Please provide the AIRLINE")
+    private String airline;
 
-	@Column(name = "flightNumber")
-	private String flightNumber;
+    // Represents the flight number
+    @Column(name = "flightNumber")
+    private String flightNumber;
 
-	@Column(name = "ticketPrice")
-	private double ticketPrice;
+    // Represents the ticket price for the flight
+    @Column(name = "ticketPrice")
+    private double ticketPrice;
 
-	@Column(name = "noOfSeats")
-	private int noOfSeats;
+    // Represents the number of seats available on the flight
+    @Column(name = "noOfSeats")
+    private int noOfSeats;
 
-	public int getFlightId() {
-		return flightId;
-	}
+    // Getter for the flight ID
+    public int getFlightId() {
+        return flightId;
+    }
 
-	public void setFlightId(int flightId) {
-		this.flightId = flightId;
-	}
+    // Setter for the flight ID
+    public void setFlightId(int flightId) {
+        this.flightId = flightId;
+    }
 
-	public String getAirline() {
-		return airline;
-	}
+    // Getter for the airline name
+    public String getAirline() {
+        return airline;
+    }
 
-	public void setAirline(String airline) {
-		this.airline = airline;
-	}
+    // Setter for the airline name
+    public void setAirline(String airline) {
+        this.airline = airline;
+    }
 
-	public String getFlightNumber() {
-		return flightNumber;
-	}
+    // Getter for the flight number
+    public String getFlightNumber() {
+        return flightNumber;
+    }
 
-	public void setFlightNumber(String flightNumber) {
-		this.flightNumber = flightNumber;
-	}
+    // Setter for the flight number
+    public void setFlightNumber(String flightNumber) {
+        this.flightNumber = flightNumber;
+    }
 
-	public double getTicketPrice() {
-		return ticketPrice;
-	}
+    // Getter for the ticket price
+    public double getTicketPrice() {
+        return ticketPrice;
+    }
 
-	public void setTicketPrice(double ticketPrice) {
-		this.ticketPrice = ticketPrice;
-	}
+    // Setter for the ticket price
+    public void setTicketPrice(double ticketPrice) {
+        this.ticketPrice = ticketPrice;
+    }
 
-	public int getNoOfSeats() {
-		return noOfSeats;
-	}
+    // Getter for the number of seats
+    public int getNoOfSeats() {
+        return noOfSeats;
+    }
 
-	public void setNoOfSeats(int noOfSeats) {
-		this.noOfSeats = noOfSeats;
-	}
-
+    // Setter for the number of seats
+    public void setNoOfSeats(int noOfSeats) {
+        this.noOfSeats = noOfSeats;
+    }
 }

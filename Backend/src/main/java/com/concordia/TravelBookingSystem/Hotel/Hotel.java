@@ -9,63 +9,78 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity(name = "Hotel")
 public class Hotel {
-
-	@Id
-	@Column(name = "hotelId")
+    
+    // Represents the unique identifier for the hotel
+    @Id
+    @Column(name = "hotelId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	int hotelId;
+    int hotelId;
 
-	@Column(name = "hotelName")
-	@NotEmpty(message = "*Please provide the HOTELNAME")
-	private String hotelName;
+    // Represents the name of the hotel
+    @Column(name = "hotelName")
+    @NotEmpty(message = "*Please provide the HOTELNAME")
+    private String hotelName;
 
-	@Column(name = "location")
-	@NotEmpty(message = "*Please provide the LOCATION")
-	private String location;
+    // Represents the location of the hotel
+    @Column(name = "location")
+    @NotEmpty(message = "*Please provide the LOCATION")
+    private String location;
 
-	@Column(name = "pricePerNight")
-	private double pricePerNight;
+    // Represents the price per night for the hotel
+    @Column(name = "pricePerNight")
+    private double pricePerNight;
 
-	@Column(name = "amenities")
-	private String amenities;
+    // Represents the amenities available at the hotel
+    @Column(name = "amenities")
+    private String amenities;
 
-	public int getHotelId() {
-		return hotelId;
-	}
+    // Getter for the hotel ID
+    public int getHotelId() {
+        return hotelId;
+    }
 
-	public void setHotelId(int hotelId) {
-		this.hotelId = hotelId;
-	}
+    // Setter for the hotel ID
+    public void setHotelId(int hotelId) {
+        this.hotelId = hotelId;
+    }
 
-	public String getHotelName() {
-		return hotelName;
-	}
+    // Getter for the hotel name
+    public String getHotelName() {
+        return hotelName;
+    }
 
-	public void setHotelName(String hotelName) {
-		this.hotelName = hotelName;
-	}
+    // Setter for the hotel name
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
+    }
 
-	public String getLocation() {
-		return location;
-	}
+    // Getter for the location
+    public String getLocation() {
+        return location;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    // Setter for the location
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	public double getPricePerNight() {
-		return pricePerNight;
-	}
+    // Getter for the price per night
+    public double getPricePerNight() {
+        return pricePerNight;
+    }
 
-	public void setPricePerNight(double pricePerNight) {
-		this.pricePerNight = pricePerNight;
-	}
+    // Setter for the price per night
+    public void setPricePerNight(double pricePerNight) {
+        this.pricePerNight = pricePerNight;
+    }
 
-	public String getAmenities() {
-		return amenities;
-	}
+    // Getter for the amenities
+    public String getAmenities() {
+        return amenities;
+    }
 
-	public void setAmenities(String amenities) {
-		this.amenities = amenities;
-	}
+    // Setter for the amenities
+    public void setAmenities(String amenities) {
+        this.amenities = amenities;
+    }
 }
