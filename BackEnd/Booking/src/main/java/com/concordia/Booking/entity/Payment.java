@@ -6,24 +6,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
 
 @Entity(name = "Payment")
 public class Payment {
 
-	@Id
-	@Column(name = "paymentId")
+    // Represents the unique identifier for the payment
+    @Id
+    @Column(name = "paymentId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int paymentId;
+    private int paymentId;
 
-	public int getPaymentId() {
-		return paymentId;
-	}
+    // Getter for the payment ID
+    public int getPaymentId() {
+        return paymentId;
+    }
 
-	public void setPaymentId(int paymentId) {
-		this.paymentId = paymentId;
-	}
+    // Setter for the payment ID
+    public void setPaymentId(int paymentId) {
+        this.paymentId = paymentId;
+    }
 }

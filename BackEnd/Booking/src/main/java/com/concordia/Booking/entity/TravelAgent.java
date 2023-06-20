@@ -6,69 +6,83 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
-@Entity(name = "TravelAgent")
 
+@Entity(name = "TravelAgent")
 public class TravelAgent {
 
-	@Id
-	@Column(name = "travelAgentId")
+    // Represents the unique identifier for the travel agent
+    @Id
+    @Column(name = "travelAgentId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	int travelAgentId;
+    int travelAgentId;
 
-	@Column(name = "agentName")
-	@NotEmpty(message = "*Please provide the AGENTNAME")
-	private String agentName;
+    // Represents the name of the travel agent
+    @Column(name = "agentName")
+    @NotEmpty(message = "*Please provide the AGENTNAME")
+    private String agentName;
 
-	@Column(name = "location")
-	@NotEmpty(message = "*Please provide the LOCATION")
-	private String location;
+    // Represents the location of the travel agent
+    @Column(name = "location")
+    @NotEmpty(message = "*Please provide the LOCATION")
+    private String location;
 
-	@Column(name = "username")
-	@NotEmpty(message = "*Please provide the USERNAME")
-	private String username;
+    // Represents the username of the travel agent
+    @Column(name = "username")
+    @NotEmpty(message = "*Please provide the USERNAME")
+    private String username;
 
-	@Column(name = "password")
-	@NotEmpty(message = "*Please provide the PASSWORD")
-	private String password;
+    // Represents the password of the travel agent
+    @Column(name = "password")
+    @NotEmpty(message = "*Please provide the PASSWORD")
+    private String password;
 
-	public int getTravelAgentId() {
-		return travelAgentId;
-	}
+    // Getter for the travel agent ID
+    public int getTravelAgentId() {
+        return travelAgentId;
+    }
 
-	public void setTravelAgentId(int travelAgentId) {
-		this.travelAgentId = travelAgentId;
-	}
+    // Setter for the travel agent ID
+    public void setTravelAgentId(int travelAgentId) {
+        this.travelAgentId = travelAgentId;
+    }
 
-	public String getAgentName() {
-		return agentName;
-	}
+    // Getter for the agent name
+    public String getAgentName() {
+        return agentName;
+    }
 
-	public void setAgentName(String agentName) {
-		this.agentName = agentName;
-	}
+    // Setter for the agent name
+    public void setAgentName(String agentName) {
+        this.agentName = agentName;
+    }
 
-	public String getLocation() {
-		return location;
-	}
+    // Getter for the location
+    public String getLocation() {
+        return location;
+    }
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
+    // Setter for the location
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    // Getter for the username
+    public String getUsername() {
+        return username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    // Setter for the username
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    // Getter for the password
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
+    // Setter for the password
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

@@ -9,90 +9,110 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity(name = "Customer")
 public class Customer {
-
-	@Id
-	@Column(name = "customerId")
+    
+    // Represents the unique identifier for the customer
+    @Id
+    @Column(name = "customerId")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	int customerId;
+    int customerId;
 
-	@Column(name = "firstName")
-	@NotEmpty(message = "*Please provide your FIRSTNAME")
-	String firstName;
+    // Represents the first name of the customer
+    @Column(name = "firstName")
+    @NotEmpty(message = "*Please provide your FIRSTNAME")
+    String firstName;
 
-	@Column(name = "lastName")
-	@NotEmpty(message = "*Please provide your LASTNAME")
-	String lastName;
+    // Represents the last name of the customer
+    @Column(name = "lastName")
+    @NotEmpty(message = "*Please provide your LASTNAME")
+    String lastName;
 
-	@Column(name = "dob")
-	@NotEmpty(message = "*Please provide your DOB")
-	String dob;
+    // Represents the date of birth of the customer
+    @Column(name = "dob")
+    @NotEmpty(message = "*Please provide your DOB")
+    String dob;
 
-	@Column(name = "email")
-	@NotEmpty(message = "*Please provide your EMAIL")
-	String email;
+    // Represents the email address of the customer
+    @Column(name = "email")
+    @NotEmpty(message = "*Please provide your EMAIL")
+    String email;
 
-	@Column(name = "username")
-	@NotEmpty(message = "*Please provide your USERNAME")
-	String username;
+    // Represents the username of the customer
+    @Column(name = "username")
+    @NotEmpty(message = "*Please provide your USERNAME")
+    String username;
 
-	@Column(name = "password")
-	@NotEmpty(message = "*Please provide your PASSWORD")
-	String password;
+    // Represents the password of the customer
+    @Column(name = "password")
+    @NotEmpty(message = "*Please provide your PASSWORD")
+    String password;
 
-	public int getCustomerId() {
-		return customerId;
-	}
+    // Getter for the customer ID
+    public int getCustomerId() {
+        return customerId;
+    }
 
-	public void setCustomerId(int customerId) {
-		this.customerId = customerId;
-	}
+    // Setter for the customer ID
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    // Getter for the first name
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
+    // Setter for the first name
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    // Getter for the last name
+    public String getLastName() {
+        return lastName;
+    }
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
+    // Setter for the last name
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-	public String getDob() {
-		return dob;
-	}
+    // Getter for the date of birth
+    public String getDob() {
+        return dob;
+    }
 
-	public void setDob(String dob) {
-		this.dob = dob;
-	}
+    // Setter for the date of birth
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    // Getter for the email address
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    // Setter for the email address
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getUsername() {
-		return username;
-	}
+    // Getter for the username
+    public String getUsername() {
+        return username;
+    }
 
-	public void setUsername(String username) {
-		this.username = username;
-	}
+    // Setter for the username
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    // Getter for the password
+    public String getPassword() {
+        return password;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
+    // Setter for the password
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
