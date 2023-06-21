@@ -69,7 +69,7 @@ Our system's primary goal is to provide customers with a refined and personalize
 # Technologies Used:
 * Our backend deployment -> https://www.heroku.com/ using Spring Boot
 * For our database ->  clearDB using MySQL
-* Our frontend deployment -> https://www.netlify.com/ using Angular 7
+* Our frontend deployment -> https://www.netlify.com/ using Angular 16
 
 # Coding Technologies Used:
 * Java
