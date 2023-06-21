@@ -76,5 +76,6 @@ Our system's primary goal is to provide customers with a refined and personalize
 * HTML
 * CSS
 * TypeScript
+* MySQL
 
 
