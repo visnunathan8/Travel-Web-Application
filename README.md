@@ -78,4 +78,8 @@ Our system's primary goal is to provide customers with a refined and personalize
 * TypeScript
 * MySQL
 
-
+# Our Demo videos for each Sprint
+* Sprint 1 : https://drive.google.com/file/d/1JAXwWvNW9SjnTK2iT-ZIodE8FOpds1B9/view?u%20sp=drive_link
+* Sprint 2 : https://drive.google.com/file/d/1v1qFhYQQf46x7QQxp0BLt-85uEO2jw84/view?usp=sharing
+* Sprint 3 : https://drive.google.com/file/d/1Mef3Hct9YqYRQ39odtYzYO40WsTf-IyP/view?usp=sharing
+* Sprint 3 automation testing with Selinium : https://drive.google.com/file/d/1bCplYOnvd4nOzEHG7pMdWUxNN6eef54H/view?usp=sharing
